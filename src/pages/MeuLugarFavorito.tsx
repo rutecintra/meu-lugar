@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import { Icon, LatLng } from 'leaflet';
+import { Icon } from 'leaflet';
 import type { Place, Emotion } from '../types';
 import { StorageService } from '../services/storageService';
 import { emotionLabels } from '../data/mockData';
