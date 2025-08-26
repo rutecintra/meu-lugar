@@ -73,7 +73,33 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo e título */}
           <div className="flex items-center space-x-3">
-            <div className="text-3xl">🏠</div>
+            <div className="w-8 h-8">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Fundo circular */}
+                <circle cx="16" cy="16" r="15" fill="#0ea5e9" stroke="#0369a1" strokeWidth="2"/>
+                
+                {/* Casa */}
+                <path d="M8 20V12L16 6L24 12V20H8Z" fill="#fbbf24" stroke="#f59e0b" strokeWidth="1.5"/>
+                
+                {/* Telhado */}
+                <path d="M6 12L16 4L26 12L24 10L16 6L8 10L6 12Z" fill="#dc2626" stroke="#b91c1c" strokeWidth="1.5"/>
+                
+                {/* Porta */}
+                <rect x="13" y="16" width="6" height="4" fill="#8b5cf6" stroke="#7c3aed" strokeWidth="1"/>
+                
+                {/* Janela */}
+                <rect x="10" y="14" width="3" height="3" fill="#60a5fa" stroke="#3b82f6" strokeWidth="0.5"/>
+                <rect x="19" y="14" width="3" height="3" fill="#60a5fa" stroke="#3b82f6" strokeWidth="0.5"/>
+                
+                {/* Localização (pino) */}
+                <circle cx="16" cy="26" r="2" fill="#ef4444" stroke="#dc2626" strokeWidth="1"/>
+                <path d="M16 24V22" stroke="#dc2626" strokeWidth="1.5" strokeLinecap="round"/>
+                
+                {/* Estrela */}
+                <path d="M22 8L23.5 9.5L25 8L23.5 6.5L22 8Z" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.5"/>
+                <path d="M9 8L10.5 9.5L12 8L10.5 6.5L9 8Z" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.5"/>
+              </svg>
+            </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Meu Lugar</h1>
               <p className="text-sm text-gray-600">Geografia para Crianças</p>
