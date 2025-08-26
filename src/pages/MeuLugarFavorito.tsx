@@ -1,0 +1,664 @@
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import { Icon, LatLng } from 'leaflet';
+import type { Place, Emotion } from '../types';
+import { StorageService } from '../services/storageService';
+import { emotionLabels } from '../data/mockData';
+import 'leaflet/dist/leaflet.css';
+
+interface MeuLugarFavoritoProps {
+  onPlaceAdded: (place: Place) => void;
+  onPlaceUpdated: (place: Place) => void;
+}
+
+const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({ 
+  onPlaceAdded, 
+  onPlaceUpdated 
+}) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingPlace, setEditingPlace] = useState<Place | null>(null);
+  
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [emotion, setEmotion] = useState<Emotion>('alegria');
+  const [tags, setTags] = useState<string[]>([]);
+  const [newTag, setNewTag] = useState('');
+  const [lat, setLat] = useState<number | null>(null);
+  const [lng, setLng] = useState<number | null>(null);
+  
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string>('');
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [showMap, setShowMap] = useState(false);
+  const [copiedCoordinates, setCopiedCoordinates] = useState('');
+  
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Verificar se há coordenadas na URL (copiadas de outras páginas)
+    const urlParams = new URLSearchParams(location.search);
+    const urlLat = urlParams.get('lat');
+    const urlLng = urlParams.get('lng');
+    
+    if (urlLat && urlLng) {
+      setLat(parseFloat(urlLat));
+      setLng(parseFloat(urlLng));
+      setCopiedCoordinates(`Coordenadas copiadas: ${urlLat}, ${urlLng}`);
+    } else {
+      // Tentar obter localização atual
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLat(position.coords.latitude);
+            setLng(position.coords.longitude);
+          },
+          (error) => {
+            console.log('Erro ao obter localização:', error);
+            // Coordenadas padrão (São Paulo)
+            setLat(-23.5505);
+            setLng(-46.6333);
+          }
+        );
+      }
+    }
+  }, [location]);
+
+  const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setPhotoFile(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPhotoPreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      
+      const chunks: Blob[] = [];
+      mediaRecorder.ondataavailable = (event) => {
+        chunks.push(event.data);
+      };
+      
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'audio/wav' });
+        setAudioBlob(blob);
+        stream.getTracks().forEach(track => track.stop());
+      };
+      
+      mediaRecorder.start();
+      setIsRecording(true);
+    } catch (error) {
+      console.error('Erro ao iniciar gravação:', error);
+      setError('Não foi possível acessar o microfone');
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+    }
+  };
+
+  const playAudio = () => {
+    if (audioBlob && audioRef.current) {
+      audioRef.current.src = URL.createObjectURL(audioBlob);
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const addTag = () => {
+    if (newTag.trim() && !tags.includes(newTag.trim())) {
+      setTags([...tags, newTag.trim()]);
+      setNewTag('');
+    }
+  };
+
+  const removeTag = (tagToRemove: string) => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!title.trim() || !description.trim() || !lat || !lng) {
+      setError('Por favor, preencha todos os campos obrigatórios');
+      return;
+    }
+
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const placeId = editingPlace?.id || StorageService.generateId();
+      let photoRef = '';
+      let audioRef = '';
+
+      // Salvar foto se houver
+      if (photoFile) {
+        photoRef = `photo_${placeId}`;
+        await StorageService.saveMedia(photoRef, photoFile);
+      }
+
+      // Salvar áudio se houver
+      if (audioBlob) {
+        audioRef = `audio_${placeId}`;
+        await StorageService.saveMedia(audioRef, audioBlob);
+      }
+
+      const place: Place = {
+        id: placeId,
+        title: title.trim(),
+        description: description.trim(),
+        emotion,
+        tags,
+        lat,
+        lng,
+        photoRef: photoRef || undefined,
+        audioRef: audioRef || undefined,
+        createdAt: editingPlace?.createdAt || new Date().toISOString()
+      };
+
+      if (isEditing && editingPlace) {
+        StorageService.updatePlace(place);
+        onPlaceUpdated(place);
+      } else {
+        StorageService.addPlace(place);
+        onPlaceAdded(place);
+      }
+
+      // Limpar formulário
+      resetForm();
+      
+      // Redirecionar para o mapa
+      navigate('/mapa');
+      
+    } catch (error) {
+      console.error('Erro ao salvar lugar:', error);
+      setError('Erro ao salvar lugar. Tente novamente.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetForm = () => {
+    setTitle('');
+    setDescription('');
+    setEmotion('alegria');
+    setTags([]);
+    setPhotoFile(null);
+    setPhotoPreview('');
+    setAudioBlob(null);
+    setIsEditing(false);
+    setEditingPlace(null);
+    setError('');
+  };
+
+  const handleMapClick = (e: any) => {
+    setLat(e.latlng.lat);
+    setLng(e.latlng.lng);
+  };
+
+  const copyCoordinatesToClipboard = () => {
+    if (lat && lng) {
+      const coords = `${lat}, ${lng}`;
+      navigator.clipboard.writeText(coords);
+      setCopiedCoordinates(`Coordenadas copiadas: ${coords}`);
+      setTimeout(() => setCopiedCoordinates(''), 3000);
+    }
+  };
+
+  const pasteCoordinatesFromClipboard = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      const coords = text.split(',').map(coord => coord.trim());
+      if (coords.length === 2) {
+        const newLat = parseFloat(coords[0]);
+        const newLng = parseFloat(coords[1]);
+        if (!isNaN(newLat) && !isNaN(newLng)) {
+          setLat(newLat);
+          setLng(newLng);
+          setCopiedCoordinates(`Coordenadas coladas: ${newLat}, ${newLng}`);
+          setTimeout(() => setCopiedCoordinates(''), 3000);
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao ler da área de transferência:', error);
+    }
+  };
+
+  const generateMapLink = () => {
+    if (lat && lng) {
+      return `https://www.google.com/maps?q=${lat},${lng}`;
+    }
+    return '#';
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-6">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          {isEditing ? 'Editar Lugar' : 'Meu Lugar Favorito'} ⭐
+        </h1>
+        <p className="text-gray-600">
+          {isEditing 
+            ? 'Edite as informações do seu lugar especial'
+            : 'Conte-nos sobre o seu lugar especial! Onde fica? Como você se sente lá?'
+          }
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Informações básicas */}
+        <div className="card">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            📝 Informações do Lugar
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Nome do Lugar *
+              </label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="input-field"
+                placeholder="Ex: Minha casa, Parque da cidade..."
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Como você se sente lá? *
+              </label>
+              <select
+                value={emotion}
+                onChange={(e) => setEmotion(e.target.value as Emotion)}
+                className="input-field"
+                required
+              >
+                {Object.entries(emotionLabels).map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Por que este lugar é especial? *
+            </label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="input-field"
+              rows={4}
+              placeholder="Descreva o que torna este lugar especial para você..."
+              required
+            />
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div className="card">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            🏷️ Palavras-chave
+          </h3>
+          
+          <div className="flex gap-2 mb-3">
+            <input
+              type="text"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              className="input-field flex-1"
+              placeholder="Adicionar palavra-chave..."
+              onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
+            />
+            <button
+              type="button"
+              onClick={addTag}
+              className="btn-primary whitespace-nowrap"
+            >
+              Adicionar
+            </button>
+          </div>
+          
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm"
+                >
+                  {tag}
+                  <button
+                    type="button"
+                    onClick={() => removeTag(tag)}
+                    className="text-primary-500 hover:text-primary-700"
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Mídia */}
+        <div className="card">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            📸 Mídia do Lugar
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Foto */}
+            <div>
+              <h4 className="font-medium text-gray-700 mb-3">📷 Foto</h4>
+              
+              {photoPreview ? (
+                <div className="space-y-3">
+                  <img
+                    src={photoPreview}
+                    alt="Preview da foto"
+                    className="w-full h-32 object-cover rounded-lg border border-gray-200"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="btn-secondary text-sm"
+                    >
+                      Trocar Foto
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPhotoFile(null);
+                        setPhotoPreview('');
+                      }}
+                      className="btn-secondary text-sm text-red-600"
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-500 hover:border-primary-400 hover:text-primary-400 transition-colors"
+                >
+                  <span className="text-2xl mb-2">📷</span>
+                  <span className="text-sm">Clique para adicionar foto</span>
+                </button>
+              )}
+              
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handlePhotoChange}
+                className="hidden"
+              />
+            </div>
+
+            {/* Áudio */}
+            <div>
+              <h4 className="font-medium text-gray-700 mb-3">🎤 Áudio</h4>
+              
+              {audioBlob ? (
+                <div className="space-y-3">
+                  <div className="h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <span className="text-gray-500">🎵 Áudio gravado</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={playAudio}
+                      disabled={isPlaying}
+                      className="btn-secondary text-sm"
+                    >
+                      {isPlaying ? 'Reproduzindo...' : '▶️ Reproduzir'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setAudioBlob(null)}
+                      className="btn-secondary text-sm text-red-600"
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <button
+                    type="button"
+                    onClick={isRecording ? stopRecording : startRecording}
+                    className={`w-full h-32 rounded-lg flex flex-col items-center justify-center transition-colors ${
+                      isRecording
+                        ? 'bg-red-100 text-red-700 border-2 border-red-300'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <span className="text-2xl mb-2">
+                      {isRecording ? '⏹️' : '🎤'}
+                    </span>
+                    <span className="text-sm">
+                      {isRecording ? 'Clique para parar' : 'Clique para gravar'}
+                    </span>
+                  </button>
+                  
+                  {isRecording && (
+                    <div className="text-center text-sm text-red-600">
+                      ⏺️ Gravando...
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Localização */}
+        <div className="card">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            📍 Localização
+          </h3>
+          
+          {/* Opções de localização */}
+          <div className="mb-4 space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => setShowMap(!showMap)}
+                className="btn-secondary text-sm"
+              >
+                {showMap ? '🔽 Ocultar Mapa' : '🗺️ Mostrar Mapa'}
+              </button>
+              
+              <button
+                type="button"
+                onClick={copyCoordinatesToClipboard}
+                disabled={!lat || !lng}
+                className="btn-secondary text-sm"
+              >
+                📋 Copiar Coordenadas
+              </button>
+              
+              <button
+                type="button"
+                onClick={pasteCoordinatesFromClipboard}
+                className="btn-secondary text-sm"
+              >
+                📥 Colar Coordenadas
+              </button>
+              
+              <a
+                href={generateMapLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-sm"
+              >
+                🌐 Ver no Google Maps
+              </a>
+            </div>
+            
+            {copiedCoordinates && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-green-700 text-sm">
+                ✅ {copiedCoordinates}
+              </div>
+            )}
+          </div>
+
+          {/* Mapa interativo */}
+          {showMap && (
+            <div className="mb-4">
+              <div className="h-64 rounded-lg overflow-hidden border border-gray-200">
+                <MapContainer
+                  center={lat && lng ? [lat, lng] : [-23.5505, -46.6333]}
+                  zoom={13}
+                  style={{ height: '100%', width: '100%' }}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  />
+                  
+                  {/* Marcador da localização atual */}
+                  {lat && lng && (
+                    <Marker
+                      position={[lat, lng]}
+                      icon={new Icon({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34],
+                      })}
+                    />
+                  )}
+                  
+                  {/* Componente para capturar cliques no mapa */}
+                  <MapClickHandler onMapClick={handleMapClick} />
+                </MapContainer>
+              </div>
+              
+              <p className="text-sm text-gray-600 mt-2">
+                💡 Clique no mapa para selecionar a localização exata do seu lugar!
+              </p>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Latitude
+              </label>
+              <input
+                type="number"
+                value={lat || ''}
+                onChange={(e) => setLat(parseFloat(e.target.value) || null)}
+                step="any"
+                className="input-field"
+                placeholder="Latitude"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Longitude
+              </label>
+              <input
+                type="number"
+                value={lng || ''}
+                onChange={(e) => setLng(parseFloat(e.target.value) || null)}
+                step="any"
+                className="input-field"
+                placeholder="Longitude"
+                required
+              />
+            </div>
+          </div>
+          
+          <div className="mt-4 space-y-2">
+            <p className="text-sm text-gray-600">
+              💡 <strong>Dicas para localização:</strong>
+            </p>
+            <ul className="text-sm text-gray-600 space-y-1 ml-4">
+              <li>• <strong>Clique no mapa</strong> para selecionar a localização exata</li>
+              <li>• <strong>Copie coordenadas</strong> de outras páginas do projeto</li>
+              <li>• <strong>Cole coordenadas</strong> da área de transferência</li>
+              <li>• <strong>Use o Google Maps</strong> para verificar a localização</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Botões de ação */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-end">
+          <button
+            type="button"
+            onClick={resetForm}
+            className="btn-secondary"
+          >
+            {isEditing ? 'Cancelar' : 'Limpar'}
+          </button>
+          
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="btn-primary"
+          >
+            {isLoading ? 'Salvando...' : (isEditing ? 'Atualizar Lugar' : 'Salvar Lugar')}
+          </button>
+        </div>
+
+        {/* Elemento de áudio oculto */}
+        <audio
+          ref={audioRef}
+          onEnded={() => setIsPlaying(false)}
+          onPause={() => setIsPlaying(false)}
+          className="hidden"
+        />
+
+        {/* Mensagem de erro */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+            {error}
+          </div>
+        )}
+      </form>
+    </div>
+  );
+};
+
+const MapClickHandler: React.FC<{ onMapClick: (e: any) => void }> = ({ onMapClick }) => {
+  useMapEvents({
+    click: onMapClick,
+  });
+  return null;
+};
+
+export default MeuLugarFavorito;
