@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Place, Emotion } from '../types';
+import type { Place } from '../types';
 import { emotionLabels, emotionColors } from '../data/mockData';
 
 interface JogosProps {
