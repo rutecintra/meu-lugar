@@ -17,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
     { name: 'Sons', href: '/exploracao', icon: '🔊' },
     { name: 'Compare', href: '/compare', icon: '🔍' },
     { name: 'Quiz', href: '/quiz', icon: '❓' },
+    { name: 'Jogos', href: '/jogos', icon: '🎮' },
     { name: 'Portfólio', href: '/portfolio', icon: '📚' },
   ];
 

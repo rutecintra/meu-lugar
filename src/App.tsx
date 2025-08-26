@@ -8,6 +8,7 @@ import ExploracaoSensorial from './pages/ExploracaoSensorial';
 import CompareLugares from './pages/CompareLugares';
 import Quiz from './pages/Quiz';
 import Portfolio from './pages/Portfolio';
+import Jogos from './pages/Jogos';
 import { StorageService } from './services/storageService';
 import type { Place } from './types';
 
@@ -76,6 +77,7 @@ function App() {
             <Route path="/compare" element={<CompareLugares />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/portfolio" element={<Portfolio places={places} />} />
+            <Route path="/jogos" element={<Jogos places={places} />} />
           </Routes>
         </main>
 

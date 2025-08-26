@@ -49,6 +49,13 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-pink-100 border-pink-300'
     },
     {
+      title: 'Jogos Educativos',
+      description: 'Aprenda geografia de forma divertida através de jogos!',
+      icon: '🎮',
+      href: '/jogos',
+      color: 'bg-orange-100 border-orange-300'
+    },
+    {
       title: 'Portfólio da Turma',
       description: 'Veja todos os seus lugares organizados em um portfólio',
       icon: '📚',
