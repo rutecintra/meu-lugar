@@ -20,7 +20,10 @@ const MapUpdater: React.FC<{ places: Place[] }> = ({ places }) => {
       const bounds = new LatLngBounds(
         places.map(place => [place.lat, place.lng])
       );
-      map.fitBounds(bounds, { padding: [20, 20] });
+      map.fitBounds(bounds, { padding: [50, 50] });
+    } else {
+      // Se não há lugares, centralizar em Maceió
+      map.setView([-9.6498, -35.7089], 8);
     }
   }, [places, map]);
   
@@ -31,16 +34,49 @@ const MapUpdater: React.FC<{ places: Place[] }> = ({ places }) => {
 const createCustomIcon = (emotion: Emotion) => {
   return new Icon({
     iconUrl: `data:image/svg+xml;base64,${btoa(`
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" fill="${emotionColors[emotion]}" stroke="white" stroke-width="2"/>
-        <circle cx="9" cy="10" r="1.5" fill="white"/>
-        <circle cx="15" cy="10" r="1.5" fill="white"/>
-        <path d="M9 15c0 1.5 1.5 2.5 3 2.5s3-1 3-2.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sombra -->
+        <ellipse cx="16" cy="30" rx="8" ry="2" fill="rgba(0,0,0,0.2)"/>
+        
+        <!-- Fundo do marcador -->
+        <path d="M16 2C10.477 2 6 6.477 6 12c0 5.5 10 18 10 18s10-12.5 10-18c0-5.523-4.477-10-10-10z" 
+              fill="${emotionColors[emotion]}" 
+              stroke="white" 
+              stroke-width="2"/>
+        
+        <!-- Brilho -->
+        <path d="M16 4C11.582 4 8 7.582 8 12c0 4.5 8 16 8 16s8-11.5 8-16c0-4.418-3.582-8-8-8z" 
+              fill="rgba(255,255,255,0.3)"/>
+        
+        <!-- Ícone interno baseado na emoção -->
+        ${emotion === 'alegria' ? `
+          <circle cx="12" cy="14" r="1.5" fill="white"/>
+          <circle cx="20" cy="14" r="1.5" fill="white"/>
+          <path d="M12 18c0 1.5 1.5 2.5 4 2.5s4-1 4-2.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        ` : emotion === 'calma' ? `
+          <circle cx="16" cy="16" r="3" fill="white"/>
+          <path d="M16 8v2M16 22v2M8 16h2M22 16h2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        ` : emotion === 'curiosidade' ? `
+          <circle cx="16" cy="16" r="3" fill="white"/>
+          <path d="M16 8v2M16 22v2M8 16h2M22 16h2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M16 8c0 0-2-2-2-2" stroke="white" stroke-width="1.5"/>
+        ` : emotion === 'medo' ? `
+          <path d="M16 8l-2 4h4l-2 4" fill="white"/>
+          <circle cx="12" cy="14" r="1" fill="white"/>
+          <circle cx="20" cy="14" r="1" fill="white"/>
+        ` : emotion === 'saudade' ? `
+          <path d="M16 8c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4z" fill="white"/>
+          <path d="M16 16v6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        ` : `
+          <circle cx="12" cy="14" r="1.5" fill="white"/>
+          <circle cx="20" cy="14" r="1.5" fill="white"/>
+          <path d="M12 18c0 1.5 1.5 2.5 4 2.5s4-1 4-2.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        `}
       </svg>
     `)}`,
-    iconSize: [24, 24],
-    iconAnchor: [12, 12],
-    popupAnchor: [0, -12]
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
   });
 };
 
@@ -102,6 +138,9 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
         <p className="text-gray-600">
           Veja todos os seus lugares especiais em um mapa colorido por emoção!
         </p>
+        <div className="mt-2 text-sm text-primary-600 bg-primary-50 px-4 py-2 rounded-lg inline-block">
+          🏖️ Mapa centralizado em Maceió, Alagoas
+        </div>
       </div>
 
       {/* Filtros */}
@@ -221,17 +260,30 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
 
       {/* Mapa */}
       <div className="card p-0 overflow-hidden">
-        <div className="h-96 w-full">
+        <div className="h-[500px] w-full relative">
+          {/* Botão para centralizar em Maceió */}
+          <button
+            onClick={() => {
+              if (mapRef.current) {
+                mapRef.current.setView([-9.6498, -35.7089], 8);
+              }
+            }}
+            className="absolute top-4 right-4 z-[1000] bg-white hover:bg-gray-50 text-gray-700 px-3 py-2 rounded-lg shadow-lg border border-gray-200 text-sm font-medium transition-colors"
+            title="Centralizar em Maceió"
+          >
+            🏖️ Maceió
+          </button>
+          
           <MapContainer
             ref={mapRef}
-            center={[-23.5505, -46.6333]} // São Paulo
-            zoom={10}
+            center={[-9.6498, -35.7089]} // Maceió
+            zoom={8}
             style={{ height: '100%', width: '100%' }}
             className="z-0"
           >
             <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             />
             
             <MapUpdater places={filteredPlaces} />
@@ -243,13 +295,13 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                 icon={createCustomIcon(place.emotion)}
               >
                 <Popup>
-                  <div className="p-2 min-w-64">
-                    <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-semibold text-gray-900 text-lg">
+                  <div className="p-4 min-w-72">
+                    <div className="flex items-start justify-between mb-3">
+                      <h4 className="font-bold text-gray-900 text-lg">
                         {place.title}
                       </h4>
                       <span
-                        className="px-2 py-1 rounded-full text-xs font-medium text-white"
+                        className="px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm"
                         style={{ backgroundColor: emotionColors[place.emotion] }}
                       >
                         {emotionLabels[place.emotion]}
@@ -291,7 +343,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                           navigator.clipboard.writeText(coords);
                           alert(`Coordenadas copiadas: ${coords}`);
                         }}
-                        className="btn-secondary text-xs px-3 py-1"
+                        className="bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                         title="Copiar coordenadas"
                       >
                         📋 Copiar Coordenadas
@@ -302,7 +354,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                           const url = `/meu-lugar-favorito?lat=${place.lat}&lng=${place.lng}`;
                           window.open(url, '_blank');
                         }}
-                        className="btn-secondary text-xs px-3 py-1"
+                        className="bg-green-100 hover:bg-green-200 text-green-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                         title="Usar estas coordenadas para novo lugar"
                       >
                         ➕ Novo Lugar Aqui
@@ -310,14 +362,14 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                       
                       <button
                         onClick={() => handleEditPlace(place)}
-                        className="btn-primary text-xs px-3 py-1"
+                        className="bg-primary-100 hover:bg-primary-200 text-primary-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                       >
                         ✏️ Editar
                       </button>
                       
                       <button
                         onClick={() => handleDeletePlace(place.id)}
-                        className="btn-secondary text-xs px-3 py-1 text-red-600 hover:bg-red-50"
+                        className="bg-red-100 hover:bg-red-200 text-red-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                       >
                         🗑️ Apagar
                       </button>
@@ -335,14 +387,14 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
           🎨 Legenda das Cores
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {Object.entries(emotionLabels).map(([key, label]) => (
-            <div key={key} className="flex items-center gap-2">
+            <div key={key} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
               <div
-                className="w-4 h-4 rounded-full"
+                className="w-6 h-6 rounded-full shadow-sm border-2 border-white"
                 style={{ backgroundColor: emotionColors[key as Emotion] }}
               />
-              <span className="text-sm text-gray-700">{label}</span>
+              <span className="text-sm font-medium text-gray-700">{label}</span>
             </div>
           ))}
         </div>
