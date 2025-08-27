@@ -6,7 +6,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Praia de Pajuçara - Maceió',
     type: 'Praia',
     description: 'Uma das praias mais bonitas de Maceió, com piscinas naturais e areia branca',
-    imageUrl: '/src/assets/praiapajucara.jpg',
+    imageUrl: 'https://i.ibb.co/Dgt2cpjJ/praiapajucara.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['mar azul', 'areia branca', 'piscinas naturais', 'coqueiros', 'água cristalina']
   },
@@ -15,7 +15,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Sertão de Alagoas',
     type: 'Sertão',
     description: 'Terra seca e quente do interior de Alagoas, com cactos e paisagem árida',
-    imageUrl: '/src/assets/sertaoalagoas.jpg',
+    imageUrl: 'https://i.ibb.co/Fkk4pgWJ/sertaoalagoas.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['seco', 'quente', 'cactos', 'terra árida', 'sol forte']
   },
@@ -24,7 +24,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Mata Atlântica - Maceió',
     type: 'Floresta',
     description: 'Floresta tropical costeira de Maceió, cheia de árvores e vida selvagem',
-    imageUrl: '/src/assets/mataatlantica.jpg',
+    imageUrl: 'https://i.ibb.co/svXmZq0w/mataatlantica.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['muitas árvores', 'verde', 'úmido', 'pássaros', 'sombra fresca']
   },
@@ -33,7 +33,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Lagoa Mundaú - Maceió',
     type: 'Lagoa',
     description: 'Lagoa de água doce em Maceió, perfeita para pesca e passeios de barco',
-    imageUrl: '/src/assets/lagoamundau.jpg',
+    imageUrl: 'https://i.ibb.co/TqDbTQs2/lagoamondau.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['água doce', 'barcos', 'pesca', 'tranquilo', 'mangue']
   },
@@ -42,7 +42,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Centro Histórico - Maceió',
     type: 'Cidade',
     description: 'Centro histórico de Maceió com prédios antigos, igrejas e cultura local',
-    imageUrl: '/src/assets/centrohistorico.jpg',
+    imageUrl: 'https://i.ibb.co/J8Bb7sY/centrohistorico.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['prédios antigos', 'igrejas', 'cultura', 'história', 'tradição']
   },
@@ -51,7 +51,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Pontal da Barra - Maceió',
     type: 'Pontal',
     description: 'Ponta de areia entre o mar e a lagoa, com vista deslumbrante do pôr do sol',
-    imageUrl: '/src/assets/pontaldabarra.jpg',
+    imageUrl: 'https://i.ibb.co/cX1rJGDy/pontaldabarra.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['pôr do sol', 'vista panorâmica', 'areia', 'mar', 'lagoa']
   },
@@ -60,7 +60,7 @@ export const brazilianPlaces: BrazilianPlace[] = [
     name: 'Serra da Barriga - Alagoas',
     type: 'Serra',
     description: 'Montanha histórica onde ficava o Quilombo dos Palmares, com vista para toda a região',
-    imageUrl: '/src/assets/serradabarriga.jpg',
+    imageUrl: 'https://i.ibb.co/tP3qTPd9/serradabarriga.jpg',
     region: 'Nordeste - Alagoas',
     characteristics: ['montanha', 'história', 'vista panorâmica', 'cultura', 'tradição']
   }
