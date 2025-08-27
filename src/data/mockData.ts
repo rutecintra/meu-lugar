@@ -3,66 +3,66 @@ import type { BrazilianPlace, Sound, QuizQuestion, QuizResult } from '../types';
 export const brazilianPlaces: BrazilianPlace[] = [
   {
     id: '1',
-    name: 'Praia de Copacabana',
+    name: 'Praia de Pajuçara - Maceió',
     type: 'Praia',
-    description: 'Uma das praias mais famosas do mundo, com areia dourada e mar azul',
-    imageUrl: '/images/places/praia.jpg',
-    region: 'Sudeste',
-    characteristics: ['mar', 'areia', 'sol', 'água salgada', 'conchas']
+    description: 'Uma das praias mais bonitas de Maceió, com piscinas naturais e areia branca',
+    imageUrl: '/src/assets/praiapajucara.jpg',
+    region: 'Nordeste - Alagoas',
+    characteristics: ['mar azul', 'areia branca', 'piscinas naturais', 'coqueiros', 'água cristalina']
   },
   {
     id: '2',
-    name: 'Sertão Nordestino',
+    name: 'Sertão de Alagoas',
     type: 'Sertão',
-    description: 'Terra seca e quente, com cactos e paisagem árida',
-    imageUrl: '/images/places/sertao.jpg',
-    region: 'Nordeste',
+    description: 'Terra seca e quente do interior de Alagoas, com cactos e paisagem árida',
+    imageUrl: '/src/assets/sertaoalagoas.jpg',
+    region: 'Nordeste - Alagoas',
     characteristics: ['seco', 'quente', 'cactos', 'terra árida', 'sol forte']
   },
   {
     id: '3',
-    name: 'Floresta Amazônica',
+    name: 'Mata Atlântica - Maceió',
     type: 'Floresta',
-    description: 'A maior floresta tropical do mundo, cheia de árvores e animais',
-    imageUrl: '/images/places/floresta.jpg',
-    region: 'Norte',
-    characteristics: ['muitas árvores', 'verde', 'úmido', 'animais', 'rio']
+    description: 'Floresta tropical costeira de Maceió, cheia de árvores e vida selvagem',
+    imageUrl: '/src/assets/mataatlantica.jpg',
+    region: 'Nordeste - Alagoas',
+    characteristics: ['muitas árvores', 'verde', 'úmido', 'pássaros', 'sombra fresca']
   },
   {
     id: '4',
-    name: 'Fazenda no Campo',
-    type: 'Campo',
-    description: 'Terra fértil para plantar alimentos, com animais e plantações',
-    imageUrl: '/images/places/campo.jpg',
-    region: 'Centro-Oeste',
-    characteristics: ['terra fértil', 'plantações', 'animais', 'ar puro', 'tranquilo']
+    name: 'Lagoa Mundaú - Maceió',
+    type: 'Lagoa',
+    description: 'Lagoa de água doce em Maceió, perfeita para pesca e passeios de barco',
+    imageUrl: '/src/assets/lagoamundau.jpg',
+    region: 'Nordeste - Alagoas',
+    characteristics: ['água doce', 'barcos', 'pesca', 'tranquilo', 'mangue']
   },
   {
     id: '5',
-    name: 'Centro da Cidade',
+    name: 'Centro Histórico - Maceió',
     type: 'Cidade',
-    description: 'Lugar movimentado com prédios altos, carros e muitas pessoas',
-    imageUrl: '/images/places/cidade.jpg',
-    region: 'Sudeste',
-    characteristics: ['prédios', 'carros', 'muitas pessoas', 'movimentado', 'barulho']
+    description: 'Centro histórico de Maceió com prédios antigos, igrejas e cultura local',
+    imageUrl: '/src/assets/centrohistorico.jpg',
+    region: 'Nordeste - Alagoas',
+    characteristics: ['prédios antigos', 'igrejas', 'cultura', 'história', 'tradição']
   },
   {
     id: '6',
-    name: 'Comunidade Quilombola',
-    type: 'Quilombo',
-    description: 'Comunidade com história rica, tradições e cultura afro-brasileira',
-    imageUrl: '/images/places/quilombo.jpg',
-    region: 'Diversas',
-    characteristics: ['tradições', 'cultura', 'história', 'comunidade', 'raízes']
+    name: 'Pontal da Barra - Maceió',
+    type: 'Pontal',
+    description: 'Ponta de areia entre o mar e a lagoa, com vista deslumbrante do pôr do sol',
+    imageUrl: '/src/assets/pontaldabarra.jpg',
+    region: 'Nordeste - Alagoas',
+    characteristics: ['pôr do sol', 'vista panorâmica', 'areia', 'mar', 'lagoa']
   },
   {
     id: '7',
-    name: 'Vila Ribeirinha',
-    type: 'Ribeirinho',
-    description: 'Comunidade à beira do rio, vivendo da pesca e transporte fluvial',
-    imageUrl: '/images/places/ribeirinho.jpg',
-    region: 'Norte',
-    characteristics: ['rio', 'barcos', 'pesca', 'água doce', 'tranquilo']
+    name: 'Serra da Barriga - Alagoas',
+    type: 'Serra',
+    description: 'Montanha histórica onde ficava o Quilombo dos Palmares, com vista para toda a região',
+    imageUrl: '/src/assets/serradabarriga.jpg',
+    region: 'Nordeste - Alagoas',
+    characteristics: ['montanha', 'história', 'vista panorâmica', 'cultura', 'tradição']
   }
 ];
 

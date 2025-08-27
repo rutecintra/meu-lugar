@@ -57,15 +57,20 @@ const CompareLugares: React.FC = () => {
   };
 
   const getPlaceImage = (place: BrazilianPlace) => {
-    // Placeholder para imagens - em produção, usar as URLs reais
+    // Usar a imagem específica de cada lugar ou fallback baseado no tipo
+    if (place.imageUrl) {
+      return place.imageUrl;
+    }
+    
+    // Fallback para tipos específicos usando imagens locais
     const imageMap: { [key: string]: string } = {
-      'praia': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop',
-      'sertao': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
-      'floresta': 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop',
-      'campo': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop',
-      'cidade': 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop',
-      'quilombo': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
-      'ribeirinho': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop'
+      'praia': '/src/assets/praiapajucara.jpg',
+      'sertao': '/src/assets/sertaoalagoas.jpg',
+      'floresta': '/src/assets/mataatlantica.jpg',
+      'lagoa': '/src/assets/lagoamundau.jpg',
+      'cidade': '/src/assets/centrohistorico.jpg',
+      'pontal': '/src/assets/pontaldabarra.jpg',
+      'serra': '/src/assets/serradabarriga.jpg'
     };
     
     return imageMap[place.type.toLowerCase()] || imageMap['cidade'];
@@ -76,10 +81,10 @@ const CompareLugares: React.FC = () => {
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Compare Lugares 🔍
+          Compare Lugares de Maceió 🔍
         </h1>
         <p className="text-gray-600">
-          Conheça diferentes lugares do Brasil e compare com o seu lugar especial!
+          Conheça diferentes lugares de Maceió e Alagoas e compare com o seu lugar especial!
         </p>
       </div>
 
@@ -89,10 +94,10 @@ const CompareLugares: React.FC = () => {
           📖 Como funciona:
         </h3>
         <ol className="text-blue-800 space-y-2 list-decimal list-inside">
-          <li>Escolha um lugar do Brasil que te interessa</li>
+          <li>Escolha um lugar de Maceió ou Alagoas que te interessa</li>
           <li>Responda as perguntas sobre semelhanças e diferenças</li>
-          <li>Reflita sobre o que você pode aprender</li>
-          <li>Compare com outros lugares depois!</li>
+          <li>Reflita sobre o que você pode aprender sobre sua cidade</li>
+          <li>Compare com outros lugares da região depois!</li>
         </ol>
       </div>
 
@@ -100,7 +105,7 @@ const CompareLugares: React.FC = () => {
       {!selectedPlace && (
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            🗺️ Escolha um Lugar para Comparar
+            🗺️ Escolha um Lugar de Maceió para Comparar
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
