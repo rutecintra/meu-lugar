@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StorageService } from '../services/storageService';
 
 interface HeaderProps {
@@ -9,6 +9,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isOnline }) => {
   const location = useLocation();
   const [showExportMenu, setShowExportMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const navigation = [
     { name: 'Início', href: '/', icon: '🏠' },
@@ -68,12 +69,21 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
     setShowExportMenu(false);
   };
 
+  const closeMobileMenu = () => {
+    setShowMobileMenu(false);
+  };
+
+  // Fechar menu mobile quando a rota mudar
+  useEffect(() => {
+    setShowMobileMenu(false);
+  }, [location.pathname]);
+
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className="bg-white shadow-sm border-b border-gray-200 relative">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo e título */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8">
               <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Fundo circular */}
@@ -103,9 +113,9 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Meu Lugar</h1>
-              <p className="text-sm text-gray-600">Geografia para Crianças</p>
+              <p className="hidden md:block text-sm text-gray-600">Geografia para Crianças</p>
             </div>
-          </div>
+          </Link>
 
           {/* Navegação principal */}
           <nav className="hidden md:flex space-x-1">
@@ -130,6 +140,35 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
 
           {/* Menu de ações e status */}
           <div className="flex items-center space-x-3">
+            {/* Botão hambúrguer para mobile */}
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+              aria-label="Menu de navegação"
+            >
+              <svg
+                className="w-6 h-6 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {showMobileMenu ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
             {/* Status online/offline */}
             <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm ${
               isOnline 
@@ -180,29 +219,65 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
           </div>
         </div>
 
-        {/* Navegação mobile */}
-        <div className="md:hidden py-4 border-t border-gray-200">
-          <nav className="flex flex-wrap gap-2">
-            {navigation.map((item) => {
-              const isActive = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                    isActive
-                      ? 'bg-primary-100 text-primary-700'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
-                >
-                  <span className="mr-2">{item.icon}</span>
-                  {item.name}
-                </Link>
-              );
-            })}
-          </nav>
+        {/* Menu mobile hambúrguer */}
+        <div className={`md:hidden fixed top-16 left-0 right-0 bg-white shadow-lg border-t border-gray-200 transition-all duration-300 ease-in-out z-50 ${
+          showMobileMenu ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+        }`}>
+          <div className="py-4 px-4 rounded-b-2xl">
+            <nav className="space-y-2">
+              {navigation.map((item, index) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setShowMobileMenu(false)}
+                    className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 transform ${
+                      isActive
+                        ? 'bg-primary-100 text-primary-700 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 hover:shadow-sm'
+                    }`}
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                      animation: showMobileMenu ? 'slideInFromTop 0.3s ease-out forwards' : 'none'
+                    }}
+                  >
+                    <span className="mr-3">{item.icon}</span>
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </nav>
+            
+            {/* Separador */}
+            <div className="border-t border-gray-200 my-4 mx-4"></div>
+            
+            {/* Status online/offline mobile */}
+            <div className="px-4 py-2">
+              <div className={`flex items-center space-x-2 px-4 py-3 rounded-xl text-sm shadow-sm ${
+                isOnline 
+                  ? 'bg-green-100 text-green-700 border border-green-200' 
+                  : 'bg-yellow-100 text-yellow-700 border border-yellow-200'
+              }`}>
+                <div className={`w-2 h-2 rounded-full ${
+                  isOnline ? 'bg-green-500' : 'bg-yellow-500'
+                }`} />
+                <span className="font-medium">
+                  {isOnline ? 'Online' : 'Offline'}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      
+      {/* Overlay escuro para mobile */}
+      {showMobileMenu && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+          onClick={closeMobileMenu}
+        />
+      )}
     </header>
   );
 };
