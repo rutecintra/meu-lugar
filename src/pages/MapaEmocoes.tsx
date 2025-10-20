@@ -31,54 +31,39 @@ const MapUpdater: React.FC<{ places: Place[] }> = ({ places }) => {
   return null;
 };
 
-// Ícone personalizado para marcadores
+// Ícone personalizado para marcadores - Versão Ultra Simplificada
 const createCustomIcon = (emotion: Emotion) => {
-  return new Icon({
-    iconUrl: `data:image/svg+xml;base64,${btoa(`
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Sombra -->
-        <ellipse cx="16" cy="30" rx="8" ry="2" fill="rgba(0,0,0,0.2)"/>
-        
-        <!-- Fundo do marcador -->
-        <path d="M16 2C10.477 2 6 6.477 6 12c0 5.5 10 18 10 18s10-12.5 10-18c0-5.523-4.477-10-10-10z" 
-              fill="${emotionColors[emotion]}" 
-              stroke="white" 
-              stroke-width="2"/>
-        
-        <!-- Brilho -->
-        <path d="M16 4C11.582 4 8 7.582 8 12c0 4.5 8 16 8 16s8-11.5 8-16c0-4.418-3.582-8-8-8z" 
-              fill="rgba(255,255,255,0.3)"/>
-        
-        <!-- Ícone interno baseado na emoção -->
-        ${emotion === 'alegria' ? `
-          <circle cx="12" cy="14" r="1.5" fill="white"/>
-          <circle cx="20" cy="14" r="1.5" fill="white"/>
-          <path d="M12 18c0 1.5 1.5 2.5 4 2.5s4-1 4-2.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        ` : emotion === 'calma' ? `
-          <circle cx="16" cy="16" r="3" fill="white"/>
-          <path d="M16 8v2M16 22v2M8 16h2M22 16h2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        ` : emotion === 'curiosidade' ? `
-          <circle cx="16" cy="16" r="3" fill="white"/>
-          <path d="M16 8v2M16 22v2M8 16h2M22 16h2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M16 8c0 0-2-2-2-2" stroke="white" stroke-width="1.5"/>
-        ` : emotion === 'medo' ? `
-          <path d="M16 8l-2 4h4l-2 4" fill="white"/>
-          <circle cx="12" cy="14" r="1" fill="white"/>
-          <circle cx="20" cy="14" r="1" fill="white"/>
-        ` : emotion === 'saudade' ? `
-          <path d="M16 8c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4z" fill="white"/>
-          <path d="M16 16v6" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        ` : `
-          <circle cx="12" cy="14" r="1.5" fill="white"/>
-          <circle cx="20" cy="14" r="1.5" fill="white"/>
-          <path d="M12 18c0 1.5 1.5 2.5 4 2.5s4-1 4-2.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        `}
-      </svg>
-    `)}`,
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
-  });
+  // Verificar se a emoção é válida
+  const validEmotions = ['alegria', 'calma', 'curiosidade', 'medo', 'saudade'];
+  const safeEmotion = validEmotions.includes(emotion) ? emotion : 'alegria';
+  
+  // Verificar se a cor da emoção existe
+  const emotionColor = emotionColors[safeEmotion] || '#FFD700';
+  
+  console.log('Criando ícone para emoção:', safeEmotion, 'cor:', emotionColor);
+  
+  // Criar um SVG ultra simples - apenas círculo colorido
+  const svgContent = `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="12" fill="${emotionColor}" stroke="white" stroke-width="3"/>
+  </svg>`;
+  
+  try {
+    return new Icon({
+      iconUrl: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgContent)}`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16]
+    });
+  } catch (error) {
+    console.error('Erro ao criar ícone personalizado:', error);
+    // Fallback para ícone padrão do Leaflet
+    return new Icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34]
+    });
+  }
 };
 
 const MapaEmocoes: React.FC<MapaEmocoesProps> = ({ 
@@ -103,6 +88,12 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
     
     return emotionMatch && tagMatch;
   });
+
+  // Debug: Log dos lugares filtrados
+  useEffect(() => {
+    console.log('Lugares filtrados:', filteredPlaces);
+    console.log('Total de lugares:', places.length);
+  }, [filteredPlaces, places]);
 
   const handleEditPlace = (place: Place) => {
     // Aqui você pode implementar a navegação para a página de edição
@@ -295,12 +286,25 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
             
             <MapUpdater places={filteredPlaces} />
             
-            {filteredPlaces.map((place) => (
-              <Marker
-                key={place.id}
-                position={[place.lat, place.lng]}
-                icon={createCustomIcon(place.emotion)}
-              >
+            {filteredPlaces.map((place) => {
+              // Validar dados do lugar antes de renderizar
+              if (!place || !place.id || typeof place.lat !== 'number' || typeof place.lng !== 'number') {
+                console.warn('Lugar com dados inválidos ignorado:', place);
+                return null;
+              }
+              
+              // Verificar se as coordenadas são válidas
+              if (isNaN(place.lat) || isNaN(place.lng) || place.lat < -90 || place.lat > 90 || place.lng < -180 || place.lng > 180) {
+                console.warn('Coordenadas inválidas para lugar:', place.id, place.lat, place.lng);
+                return null;
+              }
+              
+              return (
+                <Marker
+                  key={place.id}
+                  position={[place.lat, place.lng]}
+                  icon={createCustomIcon(place.emotion)}
+                >
                 <Popup>
                   <div className="p-4 min-w-72">
                     <div className="flex items-start justify-between mb-3">
@@ -390,7 +394,8 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                   </div>
                 </Popup>
               </Marker>
-            ))}
+              );
+            })}
           </MapContainer>
         </div>
       </div>
