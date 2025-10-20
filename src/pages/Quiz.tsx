@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TeacherTips from '../components/TeacherTips';
 import { quizQuestions, quizResults } from '../data/mockData';
 import type { QuizResult } from '../types';
 
@@ -128,7 +129,7 @@ const Quiz: React.FC = () => {
         {/* Cabeçalho */}
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🎉 Resultado do Quiz!
+            Resultado do Quiz!
           </h1>
           <p className="text-gray-600">
             Descubra qual é o perfil do seu lugar favorito
@@ -220,10 +221,13 @@ const Quiz: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      {/* Dicas para professores */}
+      <TeacherTips moduleId="quiz-perfil" />
+      
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Quiz - Perfil do Meu Lugar ❓
+          Quiz - Perfil do Meu Lugar
         </h1>
         <p className="text-gray-600">
           Responda algumas perguntas para descobrir que tipo de lugar você gosta mais!

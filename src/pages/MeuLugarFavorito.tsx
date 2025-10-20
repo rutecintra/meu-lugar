@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { Icon } from 'leaflet';
+import TeacherTips from '../components/TeacherTips';
 import type { Place, Emotion } from '../types';
 import { StorageService } from '../services/storageService';
 import { emotionLabels } from '../data/mockData';
@@ -254,9 +255,12 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      {/* Dicas para professores */}
+      <TeacherTips moduleId="meu-lugar-favorito" />
+      
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          {isEditing ? 'Editar Lugar' : 'Meu Lugar Favorito'} ⭐
+          {isEditing ? 'Editar Lugar' : 'Meu Lugar Favorito'}
         </h1>
         <p className="text-gray-600">
           {isEditing 
@@ -505,7 +509,7 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
                 disabled={!lat || !lng}
                 className="btn-secondary text-sm"
               >
-                📋 Copiar Coordenadas
+                Copiar Coordenadas
               </button>
               
               <button
@@ -513,7 +517,7 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
                 onClick={pasteCoordinatesFromClipboard}
                 className="btn-secondary text-sm"
               >
-                📥 Colar Coordenadas
+                Colar Coordenadas
               </button>
               
               <a

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon, LatLngBounds } from 'leaflet';
+import TeacherTips from '../components/TeacherTips';
 import type { Place, Emotion } from '../types';
 
 import { emotionColors, emotionLabels } from '../data/mockData';
@@ -130,16 +131,19 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* Dicas para professores */}
+      <TeacherTips moduleId="mapa-emocoes" />
+      
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Mapa das Emoções 🗺️
+          Mapa das Emoções
         </h1>
         <p className="text-gray-600">
           Veja todos os seus lugares especiais em um mapa colorido por emoção!
         </p>
         <div className="mt-2 text-sm text-primary-600 bg-primary-50 px-4 py-2 rounded-lg inline-block">
-          🏖️ Mapa centralizado em Maceió, Alagoas
+          Mapa centralizado em Maceió, Alagoas
         </div>
       </div>
 
@@ -346,7 +350,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                         className="bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                         title="Copiar coordenadas"
                       >
-                        📋 Copiar Coordenadas
+                        Copiar Coordenadas
                       </button>
                       
                       <button
@@ -371,7 +375,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                         onClick={() => handleDeletePlace(place.id)}
                         className="bg-red-100 hover:bg-red-200 text-red-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                       >
-                        🗑️ Apagar
+                        Apagar
                       </button>
                     </div>
                   </div>

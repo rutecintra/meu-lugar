@@ -10,6 +10,7 @@ import Quiz from './pages/Quiz';
 import Portfolio from './pages/Portfolio';
 import Jogos from './pages/Jogos';
 import { StorageService } from './services/storageService';
+import { TeacherModeProvider } from './contexts/TeacherModeContext';
 import type { Place } from './types';
 
 
@@ -48,47 +49,49 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        <Header isOnline={isOnline} />
-        
-        <main className="container mx-auto px-4 py-6">
-          <Routes>
-            <Route path="/" element={<Home places={places} />} />
-            <Route 
-              path="/meu-lugar" 
-              element={
-                <MeuLugarFavorito 
-                  onPlaceAdded={handlePlaceAdded}
-                  onPlaceUpdated={handlePlaceUpdated}
-                />
-              } 
-            />
-            <Route 
-              path="/mapa" 
-              element={
-                <MapaEmocoes 
-                  places={places}
-                  onPlaceDeleted={handlePlaceDeleted}
-                />
-              } 
-            />
-            <Route path="/exploracao" element={<ExploracaoSensorial />} />
-            <Route path="/compare" element={<CompareLugares />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/portfolio" element={<Portfolio places={places} />} />
-            <Route path="/jogos" element={<Jogos places={places} />} />
-          </Routes>
-        </main>
+    <TeacherModeProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-50">
+          <Header isOnline={isOnline} />
+          
+          <main className="container mx-auto px-4 py-6">
+            <Routes>
+              <Route path="/" element={<Home places={places} />} />
+              <Route 
+                path="/meu-lugar" 
+                element={
+                  <MeuLugarFavorito 
+                    onPlaceAdded={handlePlaceAdded}
+                    onPlaceUpdated={handlePlaceUpdated}
+                  />
+                } 
+              />
+              <Route 
+                path="/mapa" 
+                element={
+                  <MapaEmocoes 
+                    places={places}
+                    onPlaceDeleted={handlePlaceDeleted}
+                  />
+                } 
+              />
+              <Route path="/exploracao" element={<ExploracaoSensorial />} />
+              <Route path="/compare" element={<CompareLugares />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/portfolio" element={<Portfolio places={places} />} />
+              <Route path="/jogos" element={<Jogos places={places} />} />
+            </Routes>
+          </main>
 
-        {/* Indicador de status offline */}
-        {!isOnline && (
-          <div className="fixed bottom-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg">
-            <span className="text-sm">Modo Offline</span>
-          </div>
-        )}
-      </div>
-    </Router>
+          {/* Indicador de status offline */}
+          {!isOnline && (
+            <div className="fixed bottom-4 right-4 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg">
+              <span className="text-sm">Modo Offline</span>
+            </div>
+          )}
+        </div>
+      </Router>
+    </TeacherModeProvider>
   );
 }
 

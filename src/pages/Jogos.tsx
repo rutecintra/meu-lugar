@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import TeacherTips from '../components/TeacherTips';
 import type { Place } from '../types';
 import { emotionLabels, emotionColors } from '../data/mockData';
 
@@ -249,10 +250,13 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
+      {/* Dicas para professores */}
+      <TeacherTips moduleId="jogos-educativos" />
+      
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          🎮 Jogos Educativos
+          Jogos Educativos
         </h1>
         <p className="text-gray-600">
           Aprenda geografia de forma divertida através de jogos!

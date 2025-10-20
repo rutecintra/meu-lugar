@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import TeacherTips from '../components/TeacherTips';
 import { sounds } from '../data/mockData';
 import type { Sound } from '../types';
 
@@ -94,10 +95,13 @@ const ExploracaoSensorial: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
+      {/* Dicas para professores */}
+      <TeacherTips moduleId="exploracao-sensorial" />
+      
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Exploração Sensorial 🔊
+          Exploração Sensorial
         </h1>
         <p className="text-gray-600">
           Explore diferentes sons e descubra qual combina com o seu lugar especial!

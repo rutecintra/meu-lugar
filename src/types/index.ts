@@ -51,3 +51,22 @@ export interface Sound {
   audioUrl: string;
   category: string;
 }
+
+export interface TeacherTip {
+  id: string;
+  title: string;
+  description: string;
+  theoreticalFoundation: string;
+  practicalSteps: string[];
+  bnccAlignment: string[];
+  ageGroup: string;
+  duration: string;
+  materials: string[];
+}
+
+export interface TheoreticalReference {
+  author: string;
+  concept: string;
+  description: string;
+  application: string;
+}

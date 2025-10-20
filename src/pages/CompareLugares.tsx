@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TeacherTips from '../components/TeacherTips';
 import { brazilianPlaces } from '../data/mockData';
 import type { BrazilianPlace } from '../types';
 
@@ -78,10 +79,13 @@ const CompareLugares: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
+      {/* Dicas para professores */}
+      <TeacherTips moduleId="compare-lugares" />
+      
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Compare Lugares de Maceió 🔍
+          Compare Lugares de Maceió
         </h1>
         <p className="text-gray-600">
           Conheça diferentes lugares de Maceió e Alagoas e compare com o seu lugar especial!
