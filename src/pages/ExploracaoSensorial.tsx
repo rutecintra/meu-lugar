@@ -9,6 +9,7 @@ const ExploracaoSensorial: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
   const [showResults, setShowResults] = useState(false);
   const [feedback, setFeedback] = useState('');
+  const [isDragging, setIsDragging] = useState(false);
   
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
 
@@ -28,6 +29,28 @@ const ExploracaoSensorial: React.FC = () => {
       setSelectedSounds(prev => [...prev, draggedSound]);
     }
     setDraggedSound(null);
+    setIsDragging(false);
+  };
+
+  // Touch events para mobile
+  const handleTouchStart = (_e: React.TouchEvent, sound: Sound) => {
+    setDraggedSound(sound);
+    setIsDragging(true);
+  };
+
+  const handleTouchEnd = (_e: React.TouchEvent) => {
+    if (draggedSound && !selectedSounds.find(s => s.id === draggedSound.id)) {
+      setSelectedSounds(prev => [...prev, draggedSound]);
+    }
+    setDraggedSound(null);
+    setIsDragging(false);
+  };
+
+  // Função para adicionar som por clique (alternativa mobile)
+  const addSoundByClick = (sound: Sound) => {
+    if (!selectedSounds.find(s => s.id === sound.id)) {
+      setSelectedSounds(prev => [...prev, sound]);
+    }
   };
 
   const removeSound = (soundId: string) => {
@@ -118,7 +141,8 @@ const ExploracaoSensorial: React.FC = () => {
         </div>
         <ol className="text-blue-800 space-y-2 list-decimal list-inside">
           <li>Clique nos sons para ouvi-los</li>
-          <li>Arraste os sons que combinam com seu lugar para a área de seleção</li>
+          <li className="hidden sm:block">Arraste os sons que combinam com seu lugar para a área de seleção</li>
+          <li className="sm:hidden">Clique em "Adicionar" nos sons que combinam com seu lugar</li>
           <li>Pode selecionar quantos quiser!</li>
           <li>Clique em "Finalizar" para ver o resultado</li>
         </ol>
@@ -140,7 +164,13 @@ const ExploracaoSensorial: React.FC = () => {
                 key={sound.id}
                 draggable
                 onDragStart={(e) => handleDragStart(e, sound)}
-                className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-move hover:bg-gray-100 transition-colors"
+                onTouchStart={(e) => handleTouchStart(e, sound)}
+                onTouchEnd={handleTouchEnd}
+                className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
+                  isDragging && draggedSound?.id === sound.id
+                    ? 'bg-primary-100 border-2 border-primary-300'
+                    : 'bg-gray-50 hover:bg-gray-100'
+                } cursor-move`}
               >
                 <button
                   onClick={() => playSound(sound)}
@@ -187,11 +217,22 @@ const ExploracaoSensorial: React.FC = () => {
                   </span>
                 </div>
                 
-                <div className="flex items-center text-gray-400 text-sm">
-                  <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                  </svg>
-                  Arraste
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => addSoundByClick(sound)}
+                    className="flex items-center text-primary-600 text-sm hover:text-primary-700 transition-colors"
+                  >
+                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Adicionar
+                  </button>
+                  <div className="hidden sm:flex items-center text-gray-400 text-sm">
+                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                    </svg>
+                    Arraste
+                  </div>
                 </div>
               </div>
             ))}

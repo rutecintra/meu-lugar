@@ -120,6 +120,11 @@ export default function Jogos({ places }: JogosProps) {
 
   // Inicializar jogo da memória
   const initializeMemoryGame = () => {
+    if (places.length === 0) {
+      alert('Você precisa criar pelo menos um lugar antes de jogar! Vá para "Meu lugar favorito" e crie seu primeiro lugar.');
+      return;
+    }
+    
     const gamePlaces = places.slice(0, 6); // Usar apenas 6 lugares para o jogo
     const cards: MemoryCard[] = [];
     
@@ -460,12 +465,31 @@ export default function Jogos({ places }: JogosProps) {
                 <div className="text-6xl mb-4 animate-bounce">🧠</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Jogo da memória</h3>
                 <p className="text-gray-600 mb-6">Encontre os pares de lugares e emoções!</p>
-                <button 
-                  onClick={initializeMemoryGame}
-                  className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-xl font-bold hover:scale-105 transition-all duration-200"
-                >
-                  🎮 Começar jogo
-                </button>
+                
+                {places.length === 0 ? (
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-6">
+                    <div className="text-4xl mb-3">📝</div>
+                    <h4 className="text-lg font-semibold text-yellow-800 mb-2">
+                      Crie seus lugares primeiro!
+                    </h4>
+                    <p className="text-yellow-700 mb-4">
+                      Você precisa criar pelo menos um lugar antes de jogar o jogo da memória.
+                    </p>
+                    <button
+                      onClick={() => window.location.href = '/meu-lugar'}
+                      className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition-all duration-200"
+                    >
+                      🏠 Criar meu primeiro lugar
+                    </button>
+                  </div>
+                ) : (
+                  <button 
+                    onClick={initializeMemoryGame}
+                    className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-xl font-bold hover:scale-105 transition-all duration-200"
+                  >
+                    🎮 Começar jogo
+                  </button>
+                )}
               </div>
             ) : (
               <div className="bg-white rounded-2xl p-6 shadow-xl">
