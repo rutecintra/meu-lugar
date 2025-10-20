@@ -296,6 +296,12 @@ npm run build
 - **Publish directory**: `dist`
 - **Node version**: 18.x
 
+### **Configuração de Rotas (SPA)**
+- **Arquivo `_redirects`**: Redireciona todas as rotas para `index.html`
+- **Arquivo `netlify.toml`**: Configuração avançada do Netlify
+- **Solução**: Resolve problema de "Page Not Found" em rotas diretas
+- **Documentação**: Veja [DEPLOY.md](DEPLOY.md) para detalhes completos
+
 ## 🤝 Contribuição
 
 ### **Como contribuir**
