@@ -77,6 +77,21 @@ const CompareLugares: React.FC = () => {
     return imageMap[place.type.toLowerCase()] || imageMap['cidade'];
   };
 
+  const getPlaceEmoji = (place: BrazilianPlace) => {
+    // Emojis baseados no tipo do lugar
+    const emojiMap: { [key: string]: string } = {
+      'praia': '🏖️',
+      'sertao': '🌵',
+      'floresta': '🌳',
+      'lagoa': '🏞️',
+      'cidade': '🏙️',
+      'pontal': '🌊',
+      'serra': '⛰️'
+    };
+    
+    return emojiMap[place.type.toLowerCase()] || '🏠';
+  };
+
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Dicas para professores */}
@@ -122,12 +137,16 @@ const CompareLugares: React.FC = () => {
                 className="card hover:shadow-lg transition-shadow cursor-pointer"
                 onClick={() => handlePlaceSelect(place)}
               >
-                <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
-                  <img
-                    src={getPlaceImage(place)}
-                    alt={place.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
+                  {place.imageUrl ? (
+                    <img
+                      src={getPlaceImage(place)}
+                      alt={place.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-6xl text-gray-400">{getPlaceEmoji(place)}</div>
+                  )}
                 </div>
                 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">

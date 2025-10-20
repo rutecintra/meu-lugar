@@ -93,7 +93,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
       // Em produção, carregar a imagem do IndexedDB
       return '/placeholder-image.jpg'; // Placeholder
     }
-    return '/placeholder-image.jpg';
+    return null; // Sem imagem
   };
 
   const getEmotionIcon = (emotion: Emotion) => {
@@ -317,12 +317,16 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
           {filteredAndSortedPlaces.map((place) => (
             <div key={place.id} className="card hover:shadow-lg transition-shadow">
               {/* Imagem */}
-              <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
-                <img
-                  src={getPlaceImage(place)}
-                  alt={place.title}
-                  className="w-full h-full object-cover"
-                />
+              <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
+                {getPlaceImage(place) ? (
+                  <img
+                    src={getPlaceImage(place)!}
+                    alt={place.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-6xl text-gray-400">🏠</div>
+                )}
               </div>
               
               {/* Conteúdo */}
@@ -395,12 +399,16 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
             <div key={place.id} className="card">
               <div className="flex gap-4">
                 {/* Imagem */}
-                <div className="w-24 h-24 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
-                  <img
-                    src={getPlaceImage(place)}
-                    alt={place.title}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
+                  {getPlaceImage(place) ? (
+                    <img
+                      src={getPlaceImage(place)!}
+                      alt={place.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-3xl text-gray-400">🏠</div>
+                  )}
                 </div>
                 
                 {/* Conteúdo */}
