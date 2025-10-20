@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MeuLugarFavorito from './pages/MeuLugarFavorito';
 import MapaEmocoes from './pages/MapaEmocoes';
@@ -52,9 +53,13 @@ function App() {
     <TeacherModeProvider>
       <Router>
         <div className="min-h-screen bg-gray-50">
-          <Header isOnline={isOnline} />
+          <Navbar isOnline={isOnline} />
           
-          <main className="container mx-auto px-4 py-6">
+          <div className="flex pt-16">
+            <Sidebar isOnline={isOnline} />
+            
+            <main className="flex-1 ml-64">
+              <div className="w-full px-4 py-6">
             <Routes>
               <Route path="/" element={<Home places={places} />} />
               <Route 
@@ -81,7 +86,9 @@ function App() {
               <Route path="/portfolio" element={<Portfolio places={places} />} />
               <Route path="/jogos" element={<Jogos places={places} />} />
             </Routes>
-          </main>
+              </div>
+            </main>
+          </div>
 
           {/* Indicador de status offline */}
           {!isOnline && (
