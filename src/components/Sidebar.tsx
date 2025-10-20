@@ -1,10 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
-interface SidebarProps {
-  isOnline: boolean;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ isOnline }) => {
+const Sidebar: React.FC = () => {
   const location = useLocation();
 
   const navigation = [

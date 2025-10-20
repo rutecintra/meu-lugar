@@ -56,7 +56,7 @@ function App() {
           <Navbar isOnline={isOnline} />
           
           <div className="flex pt-16">
-            <Sidebar isOnline={isOnline} />
+            <Sidebar />
             
             <main className="flex-1 ml-64">
               <div className="w-full px-4 py-6">
