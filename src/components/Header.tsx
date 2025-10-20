@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
       )
     },
     { 
-      name: 'Meu Lugar', 
+      name: 'Meu lugar', 
       href: '/meu-lugar', 
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,8 +178,8 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Meu Lugar</h1>
-              <p className="hidden md:block text-sm text-gray-600">Geografia para Crianças</p>
+              <h1 className="text-xl font-bold text-gray-900">Meu lugar</h1>
+              <p className="hidden md:block text-sm text-gray-600">Geografia para crianças</p>
             </div>
           </Link>
 
@@ -303,7 +303,7 @@ const Header: React.FC<HeaderProps> = ({ isOnline }) => {
                     onClick={handleClearData}
                     className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                   >
-                    Limpar Dados
+                    Limpar dados
                   </button>
                 </div>
               )}

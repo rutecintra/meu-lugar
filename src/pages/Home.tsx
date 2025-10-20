@@ -15,7 +15,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
 
   const modules = [
     {
-      title: 'Meu Lugar Favorito',
+      title: 'Meu lugar favorito',
       description: 'Crie e salve seu lugar especial com fotos, áudios e emoções',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,7 +26,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-yellow-100 border-yellow-300'
     },
     {
-      title: 'Mapa das Emoções',
+      title: 'Mapa das emoções',
       description: 'Veja todos os seus lugares em um mapa colorido por emoção',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,7 +37,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-blue-100 border-blue-300'
     },
     {
-      title: 'Exploração Sensorial',
+      title: 'Exploração sensorial',
       description: 'Explore sons e descubra qual combina com seu lugar',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-green-100 border-green-300'
     },
     {
-      title: 'Compare Lugares',
+      title: 'Compare lugares',
       description: 'Compare seu lugar com diferentes lugares do Brasil',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-purple-100 border-purple-300'
     },
     {
-      title: 'Quiz - Perfil do Meu Lugar',
+      title: 'Quiz - perfil do meu lugar',
       description: 'Descubra que tipo de lugar você gosta mais',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-pink-100 border-pink-300'
     },
     {
-      title: 'Jogos Educativos',
+      title: 'Jogos educativos',
       description: 'Aprenda geografia de forma divertida através de jogos!',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       color: 'bg-orange-100 border-orange-300'
     },
     {
-      title: 'Portfólio da Turma',
+      title: 'Portfólio da turma',
       description: 'Veja todos os seus lugares organizados em um portfólio',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,17 +101,17 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       {/* Hero Section */}
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-          Bem-vindo ao <span className="text-primary-600">Meu Lugar</span>!
+          Bem-vindo ao <span className="text-primary-600">Meu lugar</span>!
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Aprenda Geografia de forma divertida explorando seu lugar favorito. 
+          Aprenda geografia de forma divertida explorando seu lugar favorito. 
           Descubra como é especial e compare com outros lugares do Brasil!
         </p>
         
         {totalPlaces > 0 && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 max-w-md mx-auto">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">
-              Seus Lugares
+              Seus lugares
             </h3>
             <div className="text-3xl font-bold text-primary-600 mb-2">
               {totalPlaces}
@@ -122,7 +122,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
             
             {Object.keys(placesByEmotion).length > 0 && (
               <div className="mt-4 pt-4 border-t border-gray-200">
-                <p className="text-sm text-gray-600 mb-2">Emoções mais comuns:</p>
+                <p className="text-sm text-gray-600 mb-2">emoções mais comuns:</p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {Object.entries(placesByEmotion).map(([emotion, count]) => (
                     <span
@@ -141,7 +141,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
                 to="/meu-lugar"
                 className="btn-primary w-full text-center"
               >
-                ➕ Adicionar Novo Lugar
+                ➕ Adicionar novo lugar
               </Link>
             </div>
           </div>
@@ -160,7 +160,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
               to="/meu-lugar"
               className="btn-primary w-full text-center"
             >
-              Criar Meu Primeiro Lugar
+              Criar meu primeiro lugar
             </Link>
           </div>
         )}
@@ -195,7 +195,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       {/* Como usar */}
       <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-          Como Usar
+          Como usar
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
           <div className="text-center">

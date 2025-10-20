@@ -69,21 +69,21 @@ export const brazilianPlaces: BrazilianPlace[] = [
 export const sounds: Sound[] = [
   {
     id: '1',
-    name: 'Som do Mar',
+    name: 'Som do mar',
     description: 'Ondas batendo na praia',
     audioUrl: '/sounds/mar.mp3',
     category: 'natureza'
   },
   {
     id: '2',
-    name: 'Pássaros Cantando',
+    name: 'Pássaros cantando',
     description: 'Canto de diferentes pássaros',
     audioUrl: '/sounds/passaros.mp3',
     category: 'natureza'
   },
   {
     id: '3',
-    name: 'Rua Movimentada',
+    name: 'Rua movimentada',
     description: 'Carros, pessoas e movimento da cidade',
     audioUrl: '/sounds/rua.mp3',
     category: 'urbano'
@@ -97,14 +97,14 @@ export const sounds: Sound[] = [
   },
   {
     id: '5',
-    name: 'Vento nas Folhas',
+    name: 'Vento nas folhas',
     description: 'Vento soprando nas árvores',
     audioUrl: '/sounds/vento.mp3',
     category: 'natureza'
   },
   {
     id: '6',
-    name: 'Sinos da Igreja',
+    name: 'Sinos da igreja',
     description: 'Sinos tocando na igreja',
     audioUrl: '/sounds/sinos.mp3',
     category: 'urbano'

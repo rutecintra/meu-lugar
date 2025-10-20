@@ -85,7 +85,7 @@ const CompareLugares: React.FC = () => {
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Compare Lugares de Maceió
+          Compare lugares de Maceió
         </h1>
         <p className="text-gray-600">
           Conheça diferentes lugares de Maceió e Alagoas e compare com o seu lugar especial!
@@ -206,7 +206,7 @@ const CompareLugares: React.FC = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Escolher Outro Lugar
+                Escolher outro lugar
               </button>
               
               <button
@@ -216,7 +216,7 @@ const CompareLugares: React.FC = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span className="text-sm font-medium">Ver Minhas Respostas</span>
+                <span className="text-sm font-medium">Ver minhas respostas</span>
               </button>
             </div>
           </div>
@@ -323,7 +323,7 @@ const CompareLugares: React.FC = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Comparar Outro Lugar
+                Comparar outro lugar
               </button>
               
               <button
@@ -333,7 +333,7 @@ const CompareLugares: React.FC = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
-                Editar Respostas
+                Editar respostas
               </button>
             </div>
           </div>

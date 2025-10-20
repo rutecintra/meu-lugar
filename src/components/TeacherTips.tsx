@@ -32,13 +32,13 @@ const TeacherTips: React.FC<TeacherTipsProps> = ({ moduleId }) => {
       <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 mb-6">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-lg font-semibold text-purple-900 flex items-center">
-            Dicas para Professores
+            Dicas para professores
           </h3>
           <button
             onClick={() => setShowReferences(!showReferences)}
             className="text-sm text-purple-700 hover:text-purple-900 underline"
           >
-            {showReferences ? 'Ocultar' : 'Ver'} Fundamentação Teórica
+            {showReferences ? 'Ocultar' : 'Ver'} fundamentação teórica
           </button>
         </div>
 
@@ -120,12 +120,12 @@ const TeacherTips: React.FC<TeacherTipsProps> = ({ moduleId }) => {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Fundamentação Teórica</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">Fundamentação teórica</h3>
                   <p className="text-gray-700">{selectedTip.theoreticalFoundation}</p>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Passos Práticos</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">Passos práticos</h3>
                   <ol className="list-decimal list-inside space-y-1 text-gray-700">
                     {selectedTip.practicalSteps.map((step, index) => (
                       <li key={index}>{step}</li>
@@ -144,7 +144,7 @@ const TeacherTips: React.FC<TeacherTipsProps> = ({ moduleId }) => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Faixa Etária</h3>
+                    <h3 className="font-semibold text-gray-900 mb-2">Faixa etária</h3>
                     <p className="text-gray-700">{selectedTip.ageGroup}</p>
                   </div>
                   <div>
@@ -154,7 +154,7 @@ const TeacherTips: React.FC<TeacherTipsProps> = ({ moduleId }) => {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Materiais Necessários</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">Materiais necessários</h3>
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
                     {selectedTip.materials.map((material, index) => (
                       <li key={index}>{material}</li>

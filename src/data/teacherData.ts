@@ -30,7 +30,7 @@ export const theoreticalReferences: TheoreticalReference[] = [
 export const teacherTips: TeacherTip[] = [
   {
     id: "meu-lugar-favorito",
-    title: "Meu Lugar Favorito - Construção de Identidade Espacial",
+    title: "Meu lugar favorito - construção de identidade espacial",
     description: "Atividade que permite aos estudantes criarem e salvarem seu lugar especial com fotos, áudios e emoções.",
     theoreticalFoundation: "Baseado em Cavalcanti (1998), esta atividade valoriza o lugar como espaço vivido e experienciado, onde os estudantes podem expressar suas relações afetivas e memórias.",
     practicalSteps: [
@@ -51,7 +51,7 @@ export const teacherTips: TeacherTip[] = [
   },
   {
     id: "mapa-emocoes",
-    title: "Mapa das Emoções - Geografia Afetiva",
+    title: "Mapa das emoções - geografia afetiva",
     description: "Visualização de todos os lugares em um mapa colorido por emoção, desenvolvendo a geografia afetiva.",
     theoreticalFoundation: "Inspirado em Libâneo (2006), esta atividade conecta aspectos pedagógico-didáticos com a experiência emocional dos estudantes, promovendo aprendizagem significativa.",
     practicalSteps: [
@@ -72,7 +72,7 @@ export const teacherTips: TeacherTip[] = [
   },
   {
     id: "exploracao-sensorial",
-    title: "Exploração Sensorial - Percepção Geográfica",
+    title: "Exploração sensorial - percepção geográfica",
     description: "Exploração de sons e descoberta de qual combina com o lugar, desenvolvendo a percepção geográfica.",
     theoreticalFoundation: "Baseado em Moraes (2019), esta atividade desenvolve habilidades de observação e pensamento científico através da percepção sensorial do espaço.",
     practicalSteps: [
@@ -92,7 +92,7 @@ export const teacherTips: TeacherTip[] = [
   },
   {
     id: "compare-lugares",
-    title: "Compare Lugares - Análise Comparativa",
+    title: "Compare lugares - análise comparativa",
     description: "Comparação do lugar do estudante com diferentes lugares do Brasil, desenvolvendo habilidades de análise geográfica.",
     theoreticalFoundation: "Inspirado em Merenne-Schoumaker (1999), esta atividade promove o desenvolvimento de habilidades de análise e comparação, rejeitando o saber enciclopédico.",
     practicalSteps: [
@@ -113,7 +113,7 @@ export const teacherTips: TeacherTip[] = [
   },
   {
     id: "quiz-perfil",
-    title: "Quiz - Perfil do Meu Lugar - Autoconhecimento Geográfico",
+    title: "Quiz - perfil do meu lugar - autoconhecimento geográfico",
     description: "Descoberta do tipo de lugar que o estudante gosta mais, desenvolvendo autoconhecimento geográfico.",
     theoreticalFoundation: "Baseado em Cavalcanti (1998), esta atividade valoriza a relação afetiva do estudante com diferentes tipos de lugar, promovendo autoconhecimento espacial.",
     practicalSteps: [
@@ -133,7 +133,7 @@ export const teacherTips: TeacherTip[] = [
   },
   {
     id: "jogos-educativos",
-    title: "Jogos Educativos - Aprendizagem Lúdica",
+    title: "Jogos educativos - aprendizagem lúdica",
     description: "Aprendizagem de geografia de forma divertida através de jogos, promovendo engajamento e motivação.",
     theoreticalFoundation: "Inspirado em Libâneo (2006), os jogos promovem engajamento e motivação, elementos essenciais para a qualidade da educação na sala de aula.",
     practicalSteps: [
@@ -154,7 +154,7 @@ export const teacherTips: TeacherTip[] = [
   },
   {
     id: "portfolio-turma",
-    title: "Portfólio da Turma - Construção Coletiva",
+    title: "Portfólio da turma - construção coletiva",
     description: "Visualização de todos os lugares organizados em um portfólio, promovendo construção coletiva do conhecimento.",
     theoreticalFoundation: "Baseado em Merenne-Schoumaker (1999), o portfólio promove a articulação entre professor e aluno, facilitando a construção coletiva do conhecimento.",
     practicalSteps: [

@@ -101,7 +101,7 @@ const ExploracaoSensorial: React.FC = () => {
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Exploração Sensorial
+          Exploração sensorial
         </h1>
         <p className="text-gray-600">
           Explore diferentes sons e descubra qual combina com o seu lugar especial!
@@ -131,7 +131,7 @@ const ExploracaoSensorial: React.FC = () => {
             <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
-            Sons Disponíveis
+            Sons disponíveis
           </h3>
           
           <div className="space-y-3">
@@ -204,7 +204,7 @@ const ExploracaoSensorial: React.FC = () => {
             <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-lg font-semibold text-gray-900">Sons Selecionados para o Seu Lugar</h3>
+            <h3 className="text-lg font-semibold text-gray-900">Sons selecionados para o seu lugar</h3>
           </div>
           
           <div

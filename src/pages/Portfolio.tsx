@@ -125,7 +125,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
           onClick={() => window.location.href = '/meu-lugar'}
           className="btn-primary text-lg px-8 py-3"
         >
-          Criar Meu Primeiro Lugar
+          Criar meu primeiro lugar
         </button>
       </div>
     );
@@ -139,7 +139,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Portfólio da Turma
+          Portfólio da turma
         </h1>
         <p className="text-gray-600">
           Veja todos os seus lugares especiais organizados em um portfólio completo!
@@ -299,7 +299,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
             onClick={exportPortfolio}
             className="btn-primary text-sm"
           >
-            Exportar Portfólio
+            Exportar portfólio
           </button>
         </div>
       </div>

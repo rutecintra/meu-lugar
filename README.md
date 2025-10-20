@@ -1,4 +1,4 @@
-# 🏠 Meu Lugar - Geografia para Crianças
+# 🏠 Meu Lugar - Geografia para crianças
 
 > **🌐 [Acesse o site publicado: https://meulugar.netlify.app/](https://meulugar.netlify.app/)**
 

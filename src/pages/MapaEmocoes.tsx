@@ -137,7 +137,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
       {/* Cabeçalho */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Mapa das Emoções
+          Mapa das emoções
         </h1>
         <p className="text-gray-600">
           Veja todos os seus lugares especiais em um mapa colorido por emoção!
@@ -228,7 +228,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                 onClick={resetFilters}
                 className="btn-secondary text-sm"
               >
-                Limpar Filtros
+                Limpar filtros
               </button>
             </div>
           </div>
@@ -359,7 +359,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                         className="bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs px-3 py-2 rounded-lg font-medium transition-colors"
                         title="Copiar coordenadas"
                       >
-                        Copiar Coordenadas
+                        Copiar coordenadas
                       </button>
                       
                       <button
@@ -398,7 +398,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
       {/* Legenda */}
       <div className="card">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Legenda das Cores
+          Legenda das cores
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {Object.entries(emotionLabels).map(([key, label]) => (
