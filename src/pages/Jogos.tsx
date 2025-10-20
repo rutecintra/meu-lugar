@@ -35,6 +35,7 @@ export default function Jogos({ places }: JogosProps) {
   const [currentClue, setCurrentClue] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
   const [clueFeedback, setClueFeedback] = useState('');
+  const [treasureFound, setTreasureFound] = useState(false);
 
   // Estados para o Quiz das Emoções
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -60,8 +61,28 @@ export default function Jogos({ places }: JogosProps) {
       clue: 'Sou um lugar onde você aprende coisas novas todos os dias. O que sou?',
       answer: 'escola',
       difficulty: 'easy'
+    },
+    {
+      id: '4',
+      clue: 'Sou um lugar com muita água onde você pode nadar e se refrescar. O que sou?',
+      answer: 'praia',
+      difficulty: 'medium'
+    },
+    {
+      id: '5',
+      clue: 'Sou um lugar alto com muitas árvores e animais. O que sou?',
+      answer: 'montanha',
+      difficulty: 'medium'
     }
   ];
+
+  // Objetivo do tesouro
+  const treasureObjective = {
+    title: '🏆 Tesouro do Explorador Geográfico',
+    description: 'Você está em uma missão para encontrar o tesouro perdido do grande explorador!',
+    reward: 'Cada pista resolvida te aproxima do tesouro. Complete todas as pistas para descobrir o tesouro!',
+    finalReward: '🎉 Parabéns! Você encontrou o tesouro do explorador geográfico! Você é um verdadeiro aventureiro!'
+  };
 
   // Perguntas para o quiz das emoções
   const emotionQuestions = [
@@ -90,6 +111,7 @@ export default function Jogos({ places }: JogosProps) {
     setCurrentClue(0);
     setUserAnswer('');
     setClueFeedback('');
+    setTreasureFound(false);
     setCurrentQuestion(0);
     setEmotionAnswers([]);
     setShowResults(false);
@@ -187,7 +209,9 @@ export default function Jogos({ places }: JogosProps) {
           setUserAnswer('');
           setClueFeedback('');
         } else {
-          setClueFeedback('🏆 Você completou todas as pistas!');
+          // Todas as pistas foram resolvidas - TESOURO ENCONTRADO!
+          setTreasureFound(true);
+          setClueFeedback('');
         }
       }, 2000);
     } else {
@@ -201,6 +225,7 @@ export default function Jogos({ places }: JogosProps) {
     setCurrentClue(0);
     setUserAnswer('');
     setClueFeedback('');
+    setTreasureFound(false);
     setGameStarted(true);
   };
 
@@ -520,14 +545,55 @@ export default function Jogos({ places }: JogosProps) {
             {!gameStarted ? (
               <div className="bg-white rounded-2xl p-8 shadow-xl text-center">
                 <div className="text-6xl mb-4 animate-bounce">🗺️</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Caça ao tesouro</h3>
-                <p className="text-gray-600 mb-6">Resolva pistas e descubra lugares!</p>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{treasureObjective.title}</h3>
+                <p className="text-gray-600 mb-4">{treasureObjective.description}</p>
+                <div className="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-4 mb-6">
+                  <p className="text-gray-700 font-medium">🎯 {treasureObjective.reward}</p>
+                </div>
                 <button 
                   onClick={startTreasureHunt}
                   className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-xl font-bold hover:scale-105 transition-all duration-200"
                 >
                   🎮 Começar aventura
                 </button>
+              </div>
+            ) : treasureFound ? (
+              <div className="bg-white rounded-2xl p-6 shadow-xl">
+                <div className="text-center">
+                  <div className="text-8xl mb-6 animate-bounce">🏆</div>
+                  <h3 className="text-3xl font-bold text-gray-800 mb-4">TESOURO ENCONTRADO!</h3>
+                  <div className="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-6 mb-6">
+                    <p className="text-lg text-gray-700 font-medium mb-4">{treasureObjective.finalReward}</p>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="bg-white bg-opacity-50 rounded-lg p-3">
+                        <span className="font-bold">🏆 Pontos:</span> {score}
+                      </div>
+                      <div className="bg-white bg-opacity-50 rounded-lg p-3">
+                        <span className="font-bold">🎯 Pistas:</span> {treasureHuntClues.length}/{treasureHuntClues.length}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-xl p-6 mb-6">
+                    <h4 className="text-xl font-bold text-gray-800 mb-3">🎉 Você é um verdadeiro explorador!</h4>
+                    <p className="text-gray-700 mb-4">
+                      Você demonstrou conhecimento geográfico e habilidades de resolução de problemas!
+                    </p>
+                    <div className="flex justify-center space-x-2">
+                      <span className="text-2xl">🗺️</span>
+                      <span className="text-2xl">🧭</span>
+                      <span className="text-2xl">⭐</span>
+                      <span className="text-2xl">🎖️</span>
+                    </div>
+                  </div>
+                  
+                  <button
+                    onClick={backToMenu}
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition-all duration-200"
+                  >
+                    🏠 Voltar ao menu
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="bg-white rounded-2xl p-6 shadow-xl">
@@ -537,8 +603,22 @@ export default function Jogos({ places }: JogosProps) {
                       <div className="text-center">
                         <div className="text-4xl mb-4">📜</div>
                         <h3 className="text-xl font-bold text-gray-800 mb-4">Pista {currentClue + 1}</h3>
-                        <p className="text-lg text-gray-700 leading-relaxed">
+                        <p className="text-lg text-gray-700 leading-relaxed mb-4">
                           {treasureHuntClues[currentClue].clue}
+                        </p>
+                        
+                        {/* Barra de progresso para o tesouro */}
+                        <div className="bg-gray-200 rounded-full h-3 mb-2">
+                          <div 
+                            className="bg-gradient-to-r from-yellow-500 to-orange-500 h-3 rounded-full transition-all duration-500"
+                            style={{ width: `${((currentClue + 1) / treasureHuntClues.length) * 100}%` }}
+                          ></div>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          {currentClue + 1} de {treasureHuntClues.length} pistas resolvidas
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          🏆 {treasureHuntClues.length - currentClue - 1} pistas restantes para encontrar o tesouro!
                         </p>
                       </div>
                     </div>
@@ -576,18 +656,7 @@ export default function Jogos({ places }: JogosProps) {
                       )}
                     </div>
                   </>
-                ) : (
-                  <div className="text-center">
-                    <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-xl p-6">
-                      <div className="text-4xl mb-2">🏆</div>
-                      <h3 className="text-xl font-bold text-gray-800 mb-2">Parabéns!</h3>
-                      <p className="text-gray-600 mb-4">Você completou todas as pistas!</p>
-                      <div className="text-sm text-gray-600">
-                        <span>🏆 Pontos finais: {score}</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                ) : null}
               </div>
             )}
           </div>
