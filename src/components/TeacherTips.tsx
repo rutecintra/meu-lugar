@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTeacherMode } from '../contexts/TeacherModeContext';
 import { teacherTips, theoreticalReferences } from '../data/teacherData';
-import type { TeacherTip, TheoreticalReference } from '../types';
+import type { TeacherTip } from '../types';
 
 interface TeacherTipsProps {
   moduleId?: string;
