@@ -1,7 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
-const Sidebar: React.FC = () => {
+const MobileMenu: React.FC = () => {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigation = [
     { 
@@ -80,20 +82,51 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* Sidebar */}
-      <div className="fixed left-0 top-0 h-full bg-white shadow-lg z-50 w-64 hidden lg:block">
-        {/* Header do Sidebar */}
+      {/* Botão do menu mobile */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg"
+      >
+        <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Menu mobile */}
+      <div className={`lg:hidden fixed left-0 top-0 h-full bg-white shadow-lg z-50 w-64 transform transition-transform duration-300 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}>
+        {/* Header do Menu Mobile */}
         <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <div>
+                <h1 className="text-lg font-bold text-gray-900">Meu lugar</h1>
+                <p className="text-xs text-gray-500">Geografia para crianças</p>
+              </div>
+            </div>
+            
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">Meu lugar</h1>
-              <p className="text-xs text-gray-500">Geografia para crianças</p>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -105,6 +138,7 @@ const Sidebar: React.FC = () => {
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
                   isActive
                     ? 'bg-blue-100 text-blue-700'
@@ -117,14 +151,9 @@ const Sidebar: React.FC = () => {
             );
           })}
         </nav>
-
-        {/* Status e Controles */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
-          {/* Espaço vazio - elementos movidos para navbar */}
-        </div>
       </div>
     </>
   );
 };
 
-export default Sidebar;
+export default MobileMenu;

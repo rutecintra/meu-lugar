@@ -309,11 +309,11 @@ export default function Jogos({ places }: JogosProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         {/* Header com gradiente colorido */}
         <div className="text-center mb-8">
           <div className="inline-block relative">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
               🎮 Jogos educativos 🎮
             </h1>
             <div className="absolute -top-2 -right-2 text-2xl animate-bounce">✨</div>
@@ -333,19 +333,19 @@ export default function Jogos({ places }: JogosProps) {
         <TeacherTips moduleId="jogos-educativos" />
 
         {activeGame === 'menu' && (
-          <div className="grid grid-cols-4 gap-6 max-w-7xl mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
             {/* Jogo da Memória */}
             <div 
               className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
               onClick={() => setActiveGame('memory')}
             >
-              <div className="bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden h-64">
+                      <div className="bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600 rounded-2xl p-4 sm:p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden h-48 sm:h-64">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white bg-opacity-10 rounded-full -mr-10 -mt-10"></div>
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white bg-opacity-10 rounded-full -ml-8 -mb-8"></div>
                 
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
-                    <div className="text-5xl mb-3 group-hover:animate-bounce">🧠</div>
+                    <div className="text-3xl sm:text-5xl mb-3 group-hover:animate-bounce">🧠</div>
                     <h3 className="text-xl font-bold mb-2">Jogo da memória</h3>
                     <p className="text-white text-opacity-90 text-sm leading-relaxed">
                       Encontre os pares de lugares e emoções!
@@ -364,13 +364,13 @@ export default function Jogos({ places }: JogosProps) {
               className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
               onClick={() => setActiveGame('treasure')}
             >
-              <div className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden h-64">
+                      <div className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 rounded-2xl p-4 sm:p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden h-48 sm:h-64">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white bg-opacity-10 rounded-full -mr-10 -mt-10"></div>
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white bg-opacity-10 rounded-full -ml-8 -mb-8"></div>
                 
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
-                    <div className="text-5xl mb-3 group-hover:animate-bounce">🗺️</div>
+                    <div className="text-3xl sm:text-5xl mb-3 group-hover:animate-bounce">🗺️</div>
                     <h3 className="text-xl font-bold mb-2">Caça ao tesouro</h3>
                     <p className="text-white text-opacity-90 text-sm leading-relaxed">
                       Resolva pistas e descubra lugares!
@@ -389,13 +389,13 @@ export default function Jogos({ places }: JogosProps) {
               className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
               onClick={() => setActiveGame('emotions')}
             >
-              <div className="bg-gradient-to-br from-green-400 via-teal-500 to-blue-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden h-64">
+                      <div className="bg-gradient-to-br from-green-400 via-teal-500 to-blue-600 rounded-2xl p-4 sm:p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden h-48 sm:h-64">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white bg-opacity-10 rounded-full -mr-10 -mt-10"></div>
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white bg-opacity-10 rounded-full -ml-8 -mb-8"></div>
                 
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
-                    <div className="text-5xl mb-3 group-hover:animate-bounce">🎭</div>
+                    <div className="text-3xl sm:text-5xl mb-3 group-hover:animate-bounce">🎭</div>
                     <h3 className="text-xl font-bold mb-2">Quiz das emoções</h3>
                     <p className="text-white text-opacity-90 text-sm leading-relaxed">
                       Descubra como você se sente em diferentes lugares!
@@ -411,13 +411,13 @@ export default function Jogos({ places }: JogosProps) {
 
             {/* Quebra-Cabeça do Brasil */}
             <div className="group transform transition-all duration-300">
-              <div className="bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden opacity-60 h-64">
+                      <div className="bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-2xl p-4 sm:p-6 text-white shadow-xl relative overflow-hidden opacity-60 h-48 sm:h-64">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white bg-opacity-10 rounded-full -mr-10 -mt-10"></div>
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white bg-opacity-10 rounded-full -ml-8 -mb-8"></div>
                 
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
-                    <div className="text-5xl mb-3">🧩</div>
+                    <div className="text-3xl sm:text-5xl mb-3">🧩</div>
                     <h3 className="text-xl font-bold mb-2">Quebra-cabeça do Brasil</h3>
                     <p className="text-white text-opacity-90 text-sm leading-relaxed">
                       Em breve...

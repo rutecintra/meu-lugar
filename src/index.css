@@ -51,6 +51,40 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  
+  /* Responsividade para mobile */
+  .mobile-padding {
+    @apply px-2 sm:px-4;
+  }
+  
+  .mobile-text {
+    @apply text-sm sm:text-base;
+  }
+  
+  .mobile-title {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  .mobile-grid {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  .mobile-card {
+    @apply p-4 sm:p-6;
+  }
+  
+  /* Melhorias para touch em mobile */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .mobile-button {
+    @apply touch-target px-4 py-3 text-base;
+  }
+  
+  .mobile-input {
+    @apply text-base px-4 py-3;
+  }
 }
 
 /* Animações para o menu mobile */

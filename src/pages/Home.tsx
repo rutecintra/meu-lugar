@@ -99,11 +99,11 @@ const Home: React.FC<HomeProps> = ({ places }) => {
       <TeacherTips />
 
       {/* Hero Section */}
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+      <div className="text-center space-y-4 px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
           Bem-vindo ao <span className="text-primary-600">Meu lugar</span>!
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
           Aprenda geografia de forma divertida explorando seu lugar favorito. 
           Descubra como é especial e compare com outros lugares do Brasil!
         </p>
@@ -172,12 +172,12 @@ const Home: React.FC<HomeProps> = ({ places }) => {
           O que você pode fazer?
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {modules.map((module) => (
             <Link
               key={module.title}
               to={module.href}
-              className={`block p-6 rounded-xl border-2 transition-all duration-200 hover:scale-105 hover:shadow-lg ${module.color}`}
+              className={`block p-4 sm:p-6 rounded-xl border-2 transition-all duration-200 hover:scale-105 hover:shadow-lg ${module.color}`}
             >
               <div className="text-4xl mb-4 text-gray-600">{module.icon}</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">

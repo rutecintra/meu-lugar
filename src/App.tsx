@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
+import MobileMenu from './components/MobileMenu';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MeuLugarFavorito from './pages/MeuLugarFavorito';
@@ -57,9 +58,10 @@ function App() {
           
           <div className="flex pt-16">
             <Sidebar />
+            <MobileMenu />
             
-            <main className="flex-1 ml-64">
-              <div className="w-full px-4 py-6">
+            <main className="flex-1 lg:ml-64">
+              <div className="w-full px-2 sm:px-4 py-4 sm:py-6">
             <Routes>
               <Route path="/" element={<Home places={places} />} />
               <Route 
