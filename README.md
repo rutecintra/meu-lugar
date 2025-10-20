@@ -60,7 +60,7 @@ Uma aplicação web educativa e interativa para ensinar geografia de forma diver
 
 ### **1. Primeiro Acesso**
 1. Acesse [https://meulugar.netlify.app/](https://meulugar.netlify.app/)
-2. Clique em "⭐ Criar Meu Primeiro Lugar"
+2. Clique em "Criar Meu Primeiro Lugar"
 3. Preencha as informações do seu lugar especial
 
 ### **2. Criando Lugares**

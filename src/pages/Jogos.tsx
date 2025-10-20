@@ -270,7 +270,11 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
             onClick={() => setActiveGame('memory')}
             className="card hover:shadow-lg transition-all duration-200 hover:scale-105 text-center p-6"
           >
-            <div className="text-4xl mb-4">🗺️</div>
+            <div className="text-4xl mb-4">
+              <svg className="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Jogo da Memória
             </h3>
@@ -278,7 +282,7 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
               Encontre pares de lugares e teste sua memória!
             </p>
             <div className="mt-4 text-xs text-gray-500">
-              💡 Dica: Você precisa ter pelo menos 4 lugares criados
+              Dica: Você precisa ter pelo menos 4 lugares criados
             </div>
           </button>
 
@@ -286,15 +290,23 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
             onClick={() => setActiveGame('treasure')}
             className="card hover:shadow-lg transition-all duration-200 hover:scale-105 text-center p-6"
           >
-            <div className="text-4xl mb-4">📍</div>
+            <div className="text-4xl mb-4">
+              <svg className="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Caça ao Tesouro
             </h3>
             <p className="text-gray-600 text-sm">
               Resolva pistas para descobrir lugares!
             </p>
-            <div className="mt-4 text-xs text-gray-500">
-              🎯 5 pistas para resolver
+            <div className="mt-4 text-xs text-gray-500 flex items-center justify-center">
+              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              5 pistas para resolver
             </div>
           </button>
 
@@ -302,15 +314,22 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
             onClick={() => setActiveGame('puzzle')}
             className="card hover:shadow-lg transition-all duration-200 hover:scale-105 text-center p-6"
           >
-            <div className="text-4xl mb-4">🌍</div>
+            <div className="text-4xl mb-4">
+              <svg className="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Quebra-Cabeça do Brasil
             </h3>
             <p className="text-gray-600 text-sm">
               Monte o mapa do Brasil arrastando os estados!
             </p>
-            <div className="mt-4 text-xs text-gray-500">
-              🧩 Em breve!
+            <div className="mt-4 text-xs text-gray-500 flex items-center justify-center">
+              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Em breve!
             </div>
           </button>
 
@@ -318,15 +337,22 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
             onClick={() => setActiveGame('emotions')}
             className="card hover:shadow-lg transition-all duration-200 hover:scale-105 text-center p-6"
           >
-            <div className="text-4xl mb-4">⭐</div>
+            <div className="text-4xl mb-4">
+              <svg className="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+            </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Quiz das Emoções
             </h3>
             <p className="text-gray-600 text-sm">
               Relacione lugares com sentimentos!
             </p>
-            <div className="mt-4 text-xs text-gray-500">
-              ❓ 3 perguntas para responder
+            <div className="mt-4 text-xs text-gray-500 flex items-center justify-center">
+              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              3 perguntas para responder
             </div>
           </button>
         </div>
@@ -351,8 +377,11 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
 
           {!gameStarted ? (
             <div className="text-center">
-              <button onClick={initializeMemoryGame} className="btn-primary text-lg px-8 py-4">
-                🎮 Iniciar Jogo da Memória
+              <button onClick={initializeMemoryGame} className="btn-primary text-lg px-8 py-4 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Iniciar Jogo da Memória
               </button>
             </div>
           ) : (
@@ -385,7 +414,9 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
                     </div>
                   ) : (
                     <div className="h-full flex items-center justify-center text-2xl text-primary-600">
-                      ❓
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
                     </div>
                   )}
                 </button>
@@ -416,14 +447,21 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
 
           {!gameStarted ? (
             <div className="text-center">
-              <button onClick={startTreasureHunt} className="btn-primary text-lg px-8 py-4">
-                🗺️ Iniciar Caça ao Tesouro
+              <button onClick={startTreasureHunt} className="btn-primary text-lg px-8 py-4 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Iniciar Caça ao Tesouro
               </button>
             </div>
           ) : (
             <div className="card text-center max-w-2xl mx-auto">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                🕵️ Pista #{currentClue + 1}
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                Pista #{currentClue + 1}
               </h3>
               
               <div className="mb-6">
@@ -457,7 +495,12 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
                   onClick={checkTreasureHuntAnswer}
                   className="btn-primary w-full"
                 >
-                  🔍 Verificar Resposta
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <span className="text-sm font-medium text-primary-600">Verificar Resposta</span>
+                  </div>
                 </button>
               </div>
 
@@ -496,14 +539,20 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
 
           {!gameStarted ? (
             <div className="text-center">
-              <button onClick={startEmotionQuiz} className="btn-primary text-lg px-8 py-4">
-                ⭐ Iniciar Quiz das Emoções
+              <button onClick={startEmotionQuiz} className="btn-primary text-lg px-8 py-4 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                Iniciar Quiz das Emoções
               </button>
             </div>
           ) : (
             <div className="card text-center max-w-2xl mx-auto">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">
-                ❓ Pergunta #{currentQuestion + 1}
+              <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Pergunta #{currentQuestion + 1}
               </h3>
               
               <p className="text-lg text-gray-700 mb-8">
@@ -534,7 +583,11 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
           </button>
           
           <div className="card max-w-md mx-auto">
-            <div className="text-6xl mb-4">🚧</div>
+            <div className="text-6xl mb-4 flex justify-center">
+              <svg className="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Em Construção
             </h3>
@@ -546,32 +599,6 @@ const Jogos: React.FC<JogosProps> = ({ places }) => {
         </div>
       )}
 
-      {/* Dicas para professores */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h4 className="font-medium text-blue-900 mb-3 flex items-center">
-          💡 Dicas para Professores
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
-          <div>
-            <h5 className="font-medium mb-2">🎯 Objetivos Educativos:</h5>
-            <ul className="space-y-1 list-disc list-inside">
-              <li>Desenvolver memória visual e espacial</li>
-              <li>Ampliar vocabulário geográfico</li>
-              <li>Relacionar lugares com emoções</li>
-              <li>Estimular pensamento lógico</li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-medium mb-2">🎮 Como Usar:</h5>
-            <ul className="space-y-1 list-disc list-inside">
-              <li>Use como atividade de aquecimento</li>
-              <li>Competição entre grupos</li>
-              <li>Revisão de conceitos</li>
-              <li>Atividade de encerramento</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

@@ -125,7 +125,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
           onClick={() => window.location.href = '/meu-lugar'}
           className="btn-primary text-lg px-8 py-3"
         >
-          🏠 Criar Meu Primeiro Lugar
+          Criar Meu Primeiro Lugar
         </button>
       </div>
     );
@@ -371,8 +371,19 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
                 
                 {/* Indicadores de mídia */}
                 <div className="flex gap-2 text-sm text-gray-500">
-                  {place.photoRef && <span>📷</span>}
-                  {place.audioRef && <span>🎤</span>}
+                  <div className="flex items-center">
+                    {place.photoRef && (
+                      <svg className="w-4 h-4 mr-1 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    )}
+                    {place.audioRef && (
+                      <svg className="w-4 h-4 mr-1 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                      </svg>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -434,8 +445,19 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
                       )}
                       
                       <div className="flex gap-2 text-sm text-gray-500">
-                        {place.photoRef && <span>📷</span>}
-                        {place.audioRef && <span>🎤</span>}
+                        <div className="flex items-center">
+                          {place.photoRef && (
+                            <svg className="w-4 h-4 mr-1 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                          )}
+                          {place.audioRef && (
+                            <svg className="w-4 h-4 mr-1 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                          )}
+                        </div>
                       </div>
                     </div>
                     
@@ -453,7 +475,11 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
       {/* Mensagem quando não há resultados */}
       {filteredAndSortedPlaces.length === 0 && (
         <div className="card text-center py-12">
-          <div className="text-4xl mb-4">🔍</div>
+          <div className="text-4xl mb-4">
+            <svg className="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
             Nenhum lugar encontrado
           </h3>
@@ -469,28 +495,6 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
         </div>
       )}
 
-      {/* Dicas para professores */}
-      <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-        <h4 className="font-medium text-green-900 mb-2">
-          🌱 Atividade Sugerida para Professores:
-        </h4>
-        <div className="text-green-800 text-sm space-y-2">
-          <p>
-            <strong>Apresentação Coletiva:</strong> Use o modo de exportação para criar 
-            um portfólio da turma. Projete os lugares em sala de aula e peça aos alunos 
-            para apresentarem seus lugares favoritos.
-          </p>
-          <p>
-            <strong>Análise de Padrões:</strong> Analise com a turma quais emoções e 
-            características são mais comuns nos lugares escolhidos. Discuta por que 
-            certos tipos de lugar são mais populares.
-          </p>
-          <p>
-            <strong>Extensão:</strong> Crie um "mapa emocional" da escola ou bairro 
-            baseado nos lugares criados pelos alunos.
-          </p>
-        </div>
-      </div>
     </div>
   );
 };

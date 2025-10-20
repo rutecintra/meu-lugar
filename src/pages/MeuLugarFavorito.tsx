@@ -273,9 +273,12 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Informações básicas */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            📝 Informações do Lugar
-          </h3>
+          <div className="flex items-center mb-4">
+            <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <h3 className="text-lg font-semibold text-gray-900">Informações do Lugar</h3>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -328,9 +331,12 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
 
         {/* Tags */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            🏷️ Palavras-chave
-          </h3>
+          <div className="flex items-center mb-4">
+            <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            <h3 className="text-lg font-semibold text-gray-900">Palavras-chave</h3>
+          </div>
           
           <div className="flex gap-2 mb-3">
             <input
@@ -373,14 +379,24 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
 
         {/* Mídia */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            📸 Mídia do Lugar
-          </h3>
+          <div className="flex items-center mb-4">
+            <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <h3 className="text-lg font-semibold text-gray-900">Mídia do Lugar</h3>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Foto */}
             <div>
-              <h4 className="font-medium text-gray-700 mb-3">📷 Foto</h4>
+              <div className="flex items-center mb-3">
+                <svg className="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <h4 className="font-medium text-gray-700">Foto</h4>
+              </div>
               
               {photoPreview ? (
                 <div className="space-y-3">
@@ -415,7 +431,12 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
                   onClick={() => fileInputRef.current?.click()}
                   className="w-full h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-500 hover:border-primary-400 hover:text-primary-400 transition-colors"
                 >
-                  <span className="text-2xl mb-2">📷</span>
+                  <span className="text-2xl mb-2">
+                    <svg className="w-8 h-8 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </span>
                   <span className="text-sm">Clique para adicionar foto</span>
                 </button>
               )}
@@ -431,7 +452,12 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
 
             {/* Áudio */}
             <div>
-              <h4 className="font-medium text-gray-700 mb-3">🎤 Áudio</h4>
+              <div className="flex items-center mb-3">
+                <svg className="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+                <h4 className="font-medium text-gray-700">Áudio</h4>
+              </div>
               
               {audioBlob ? (
                 <div className="space-y-3">
@@ -468,7 +494,16 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
                     }`}
                   >
                     <span className="text-2xl mb-2">
-                      {isRecording ? '⏹️' : '🎤'}
+                      {isRecording ? (
+                        <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+                        </svg>
+                      ) : (
+                        <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
+                      )}
                     </span>
                     <span className="text-sm">
                       {isRecording ? 'Clique para parar' : 'Clique para gravar'}
@@ -488,9 +523,13 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
 
         {/* Localização */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            📍 Localização
-          </h3>
+          <div className="flex items-center mb-4">
+            <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <h3 className="text-lg font-semibold text-gray-900">Localização</h3>
+          </div>
           
           {/* Opções de localização */}
           <div className="mb-4 space-y-3">
@@ -500,7 +539,7 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
                 onClick={() => setShowMap(!showMap)}
                 className="btn-secondary text-sm"
               >
-                {showMap ? '🔽 Ocultar Mapa' : '🗺️ Mostrar Mapa'}
+                {showMap ? 'Ocultar Mapa' : 'Mostrar Mapa'}
               </button>
               
               <button
@@ -526,7 +565,7 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
                 rel="noopener noreferrer"
                 className="btn-secondary text-sm"
               >
-                🌐 Ver no Google Maps
+                Ver no Google Maps
               </a>
             </div>
             
@@ -609,7 +648,7 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
           
           <div className="mt-4 space-y-2">
             <p className="text-sm text-gray-600">
-              💡 <strong>Dicas para localização:</strong>
+              <strong>Dicas para localização:</strong>
             </p>
             <ul className="text-sm text-gray-600 space-y-1 ml-4">
               <li>• <strong>Clique no mapa</strong> para selecionar a localização exata</li>

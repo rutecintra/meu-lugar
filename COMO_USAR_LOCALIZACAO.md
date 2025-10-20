@@ -3,7 +3,7 @@
 ## ✨ Novas Funcionalidades Implementadas
 
 ### 1. 🗺️ **Mapa Interativo na Página de Adicionar Lugar**
-- **Clique no botão "🗺️ Mostrar Mapa"** para visualizar um mapa interativo
+- **Clique no botão "Mostrar Mapa"** para visualizar um mapa interativo
 - **Clique em qualquer ponto do mapa** para selecionar a localização exata
 - O marcador vermelho mostra sua localização atual
 - **Zoom e navegação** funcionam normalmente
@@ -31,7 +31,7 @@
 ## 🎯 **Fluxo de Trabalho Recomendado**
 
 ### **Opção 1: Seleção Visual no Mapa**
-1. Clique em "🗺️ Mostrar Mapa"
+1. Clique em "Mostrar Mapa"
 2. Navegue até a área desejada
 3. Clique no ponto exato no mapa
 4. As coordenadas são preenchidas automaticamente

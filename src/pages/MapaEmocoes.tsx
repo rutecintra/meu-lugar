@@ -150,9 +150,12 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
       {/* Filtros */}
       <div className="card">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">
-            🔍 Filtros
-          </h3>
+          <div className="flex items-center">
+            <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <h3 className="text-lg font-semibold text-gray-900">Filtros</h3>
+          </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="btn-secondary text-sm"
@@ -337,7 +340,13 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                     </div>
                     
                     <div className="text-xs text-gray-500 mb-3">
-                      📍 Coordenadas: {place.lat.toFixed(6)}, {place.lng.toFixed(6)}
+                      <div className="flex items-center mb-2">
+                        <svg className="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span className="text-sm text-gray-600">Coordenadas: {place.lat.toFixed(6)}, {place.lng.toFixed(6)}</span>
+                      </div>
                     </div>
                     
                     <div className="flex gap-2 flex-wrap">
@@ -389,7 +398,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
       {/* Legenda */}
       <div className="card">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          🎨 Legenda das Cores
+          Legenda das Cores
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {Object.entries(emotionLabels).map(([key, label]) => (
@@ -406,7 +415,7 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
 
       {/* Dicas */}
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h4 className="font-medium text-blue-900 mb-2">💡 Dicas para usar o mapa:</h4>
+        <h4 className="font-medium text-blue-900 mb-2">Dicas para usar o mapa:</h4>
         <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
           <li>Clique nos marcadores para ver detalhes dos lugares</li>
           <li>Use os filtros para encontrar lugares específicos</li>

@@ -94,9 +94,12 @@ const CompareLugares: React.FC = () => {
 
       {/* Instruções */}
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-blue-900 mb-3">
-          📖 Como funciona:
-        </h3>
+          <div className="flex items-center mb-3">
+            <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <h3 className="text-lg font-semibold text-blue-900">Como funciona:</h3>
+          </div>
         <ol className="text-blue-800 space-y-2 list-decimal list-inside">
           <li>Escolha um lugar de Maceió ou Alagoas que te interessa</li>
           <li>Responda as perguntas sobre semelhanças e diferenças</li>
@@ -109,7 +112,7 @@ const CompareLugares: React.FC = () => {
       {!selectedPlace && (
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            🗺️ Escolha um Lugar de Maceió para Comparar
+            Escolha um Lugar de Maceió para comparar
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,16 +201,22 @@ const CompareLugares: React.FC = () => {
             <div className="flex gap-3 justify-end">
               <button
                 onClick={resetComparison}
-                className="btn-secondary"
+                className="btn-secondary flex items-center justify-center"
               >
-                🔄 Escolher Outro Lugar
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Escolher Outro Lugar
               </button>
               
               <button
                 onClick={handleSubmitAnswers}
-                className="btn-primary"
+                className="btn-primary flex items-center justify-center"
               >
-                📝 Ver Minhas Respostas
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span className="text-sm font-medium">Ver Minhas Respostas</span>
               </button>
             </div>
           </div>
@@ -230,7 +239,13 @@ const CompareLugares: React.FC = () => {
             {/* Resumo do lugar */}
             <div className="bg-white rounded-lg p-4 border border-gray-200">
               <h3 className="font-semibold text-gray-900 mb-3">
-                📍 Sobre {selectedPlace.name}
+                <div className="flex items-center mb-3">
+                  <svg className="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <h4 className="font-medium text-gray-700">Sobre {selectedPlace.name}</h4>
+                </div>
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -284,7 +299,12 @@ const CompareLugares: React.FC = () => {
             {/* Sugestões de observação */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <h4 className="font-medium text-blue-900 mb-2">
-                🔍 Sugestões para sua próxima observação:
+                <div className="flex items-center mb-3">
+                  <svg className="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <h4 className="font-medium text-gray-700">Sugestões para sua próxima observação:</h4>
+                </div>
               </h4>
               <ul className="text-blue-800 text-sm space-y-1 list-disc list-inside">
                 <li>Observe as cores e formas do seu lugar</li>
@@ -298,44 +318,28 @@ const CompareLugares: React.FC = () => {
             <div className="flex gap-3 justify-center">
               <button
                 onClick={resetComparison}
-                className="btn-secondary"
+                className="btn-secondary flex items-center justify-center"
               >
-                🔄 Comparar Outro Lugar
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Comparar Outro Lugar
               </button>
               
               <button
                 onClick={() => setShowResults(false)}
-                className="btn-primary"
+                className="btn-primary flex items-center justify-center"
               >
-                ✏️ Editar Respostas
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                Editar Respostas
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Dicas para professores */}
-      <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-        <h4 className="font-medium text-green-900 mb-2">
-          🌱 Atividade Sugerida para Professores:
-        </h4>
-        <div className="text-green-800 text-sm space-y-2">
-          <p>
-            <strong>Comparação de Territórios:</strong> Use esta atividade para introduzir 
-            conceitos de diversidade territorial brasileira. Peça aos alunos para 
-            compartilharem suas comparações em grupo.
-          </p>
-          <p>
-            <strong>Objetivos de Aprendizagem:</strong> Reconhecer diferenças e semelhanças 
-            entre lugares, valorizar a diversidade cultural e territorial, e desenvolver 
-            habilidades de observação e comparação.
-          </p>
-          <p>
-            <strong>Extensão:</strong> Organize uma "feira de lugares" onde cada aluno 
-            apresenta um lugar diferente do Brasil para a turma.
-          </p>
-        </div>
-      </div>
     </div>
   );
 };
