@@ -84,16 +84,46 @@ const TeacherTips: React.FC<TeacherTipsProps> = ({ moduleId }) => {
 
         {/* Dicas gerais se não há módulo específico */}
         {!moduleId && (
-          <div className="text-sm text-purple-700">
-            <p className="mb-2">
-              <strong>Dica:</strong> Este app foi desenvolvido com base no referencial teórico de geografia humanística e didática da geografia.
-            </p>
-            <p className="mb-2">
-              <strong>Objetivo:</strong> Conectar o conhecimento científico com a experiência vivida dos estudantes.
-            </p>
-            <p>
-              <strong>Metodologia:</strong> Valorize o lugar como espaço vivido e promova aprendizagem significativa através da articulação professor-aluno-saber.
-            </p>
+          <div className="space-y-4">
+            <div className="text-sm text-purple-700">
+              <p className="mb-2">
+                <strong>Dica:</strong> Este app foi desenvolvido com base no referencial teórico de geografia humanística e didática da geografia.
+              </p>
+              <p className="mb-2">
+                <strong>Objetivo:</strong> Conectar o conhecimento científico com a experiência vivida dos estudantes.
+              </p>
+              <p>
+                <strong>Metodologia:</strong> Valorize o lugar como espaço vivido e promova aprendizagem significativa através da articulação professor-aluno-saber.
+              </p>
+            </div>
+            
+            {/* Link para folheto informativo */}
+            <div className="mt-4 p-4 bg-white rounded-lg border-2 border-purple-300">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-purple-900 mb-1">Folheto Informativo</h4>
+                  <p className="text-sm text-purple-700 mb-3">
+                    Baixe e imprima o folheto informativo para compartilhar com sua turma!
+                  </p>
+                  <a
+                    href="https://drive.google.com/file/d/1Jnaa2m1bx5IeU6Fao7RJFZ9CRCtQlAEA/view?usp=share_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm font-medium"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Baixar Folheto
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
