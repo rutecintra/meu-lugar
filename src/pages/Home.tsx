@@ -104,9 +104,7 @@ const Home: React.FC<HomeProps> = ({ places }) => {
           Bem-vindo ao <span className="text-primary-600">Meu lugar</span>!
         </h1>
         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-          Todo mundo tem um lugar favorito, me conte qual o seu! 
           Vamos explorar juntos e aprender geografia de forma divertida. 
-          Descubra como seu lugar é especial e compare com outros lugares do Brasil!
         </p>
         
         {totalPlaces > 0 && (
