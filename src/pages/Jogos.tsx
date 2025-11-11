@@ -324,7 +324,10 @@ export default function Jogos({ places }: JogosProps) {
             <div className="absolute -top-2 -right-2 text-2xl animate-bounce">✨</div>
             <div className="absolute -bottom-2 -left-2 text-2xl animate-bounce delay-100">🌟</div>
           </div>
-          <p className="text-lg text-gray-600 font-medium">
+          <p className="text-lg text-gray-600 font-medium mb-2">
+            Aprenda geografia brincando! Venha jogar e descobrir coisas incríveis sobre lugares e mapas!
+          </p>
+          <p className="text-base text-gray-500">
             Aprenda geografia de forma divertida através de jogos!
           </p>
           <div className="mt-4 flex justify-center space-x-2">

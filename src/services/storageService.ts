@@ -12,7 +12,15 @@ export class StorageService {
   static getPlaces(): Place[] {
     try {
       const places = localStorage.getItem(STORAGE_KEYS.PLACES);
-      return places ? JSON.parse(places) : [];
+      const parsedPlaces = places ? JSON.parse(places) : [];
+      
+      // Garantir compatibilidade com dados antigos - adicionar campos críticos se não existirem
+      return parsedPlaces.map((place: Place) => ({
+        ...place,
+        whatWouldChange: place.whatWouldChange || '',
+        criticalCharacteristics: place.criticalCharacteristics || undefined,
+        spacePerception: place.spacePerception || undefined
+      }));
     } catch (error) {
       console.error('Erro ao carregar lugares:', error);
       return [];

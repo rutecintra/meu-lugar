@@ -126,7 +126,10 @@ const ExploracaoSensorial: React.FC = () => {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Exploração sensorial
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-lg mb-2">
+          Feche os olhos e imagine os sons do seu lugar favorito! Vamos descobrir juntos quais sons combinam com você!
+        </p>
+        <p className="text-gray-500 text-sm">
           Explore diferentes sons e descubra qual combina com o seu lugar especial!
         </p>
       </div>

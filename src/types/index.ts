@@ -11,6 +11,10 @@ export interface Place {
   audioRef?: string;
   tags: string[];
   createdAt: string;
+  // Campos críticos para pensamento geográfico
+  criticalCharacteristics?: string;
+  whatWouldChange: string;
+  spacePerception?: string;
 }
 
 export interface StudentPortfolio {

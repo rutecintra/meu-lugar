@@ -141,7 +141,10 @@ const Portfolio: React.FC<PortfolioProps> = ({ places }) => {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Portfólio da turma
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-lg mb-2">
+          Veja todos os lugares incríveis que você criou! Sua coleção de lugares especiais está esperando por você!
+        </p>
+        <p className="text-gray-500 text-sm">
           Veja todos os seus lugares especiais organizados em um portfólio completo!
         </p>
       </div>

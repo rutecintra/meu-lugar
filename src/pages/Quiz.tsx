@@ -237,7 +237,10 @@ const Quiz: React.FC = () => {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Quiz - perfil do Meu Lugar
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-lg mb-2">
+          Descubra que tipo de lugar você mais gosta! Responda nosso quiz e vamos conhecer melhor seus lugares favoritos!
+        </p>
+        <p className="text-gray-500 text-sm">
           Responda algumas perguntas para descobrir que tipo de lugar você gosta mais!
         </p>
       </div>

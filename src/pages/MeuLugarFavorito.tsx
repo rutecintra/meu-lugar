@@ -30,6 +30,11 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
   const [lat, setLat] = useState<number | null>(null);
   const [lng, setLng] = useState<number | null>(null);
   
+  // Campos críticos adicionais
+  const [criticalCharacteristics, setCriticalCharacteristics] = useState('');
+  const [whatWouldChange, setWhatWouldChange] = useState('');
+  const [spacePerception, setSpacePerception] = useState('');
+  
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string>('');
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
@@ -140,7 +145,7 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!title.trim() || !description.trim() || !lat || !lng) {
+    if (!title.trim() || !description.trim() || !whatWouldChange.trim() || !lat || !lng) {
       setError('Por favor, preencha todos os campos obrigatórios');
       return;
     }
@@ -175,7 +180,10 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
         lng,
         photoRef: photoRef || undefined,
         audioRef: audioRef || undefined,
-        createdAt: editingPlace?.createdAt || new Date().toISOString()
+        createdAt: editingPlace?.createdAt || new Date().toISOString(),
+        criticalCharacteristics: criticalCharacteristics.trim() || undefined,
+        whatWouldChange: whatWouldChange.trim(),
+        spacePerception: spacePerception.trim() || undefined
       };
 
       if (isEditing && editingPlace) {
@@ -211,6 +219,9 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
     setIsEditing(false);
     setEditingPlace(null);
     setError('');
+    setCriticalCharacteristics('');
+    setWhatWouldChange('');
+    setSpacePerception('');
   };
 
   const handleMapClick = (e: any) => {
@@ -262,12 +273,17 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           {isEditing ? 'Editar Lugar' : 'Meu Lugar Favorito'}
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-lg mb-2">
           {isEditing 
             ? 'Edite as informações do seu lugar especial'
-            : 'Conte-nos sobre o seu lugar especial! Onde fica? Como você se sente lá?'
+            : 'Todo mundo tem um lugar favorito, me conte qual o seu!'
           }
         </p>
+        {!isEditing && (
+          <p className="text-gray-500 text-sm">
+            Onde fica? Como você se sente lá? O que torna este lugar especial para você?
+          </p>
+        )}
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -326,6 +342,67 @@ const MeuLugarFavorito: React.FC<MeuLugarFavoritoProps> = ({
               placeholder="Descreva o que torna este lugar especial para você..."
               required
             />
+          </div>
+        </div>
+
+        {/* Características críticas do lugar */}
+        <div className="card">
+          <div className="flex items-center mb-4">
+            <svg className="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            <h3 className="text-lg font-semibold text-gray-900">Pensando criticamente sobre o lugar</h3>
+          </div>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Quais características deste lugar você observa que podem ser problemáticas ou que precisam de atenção?
+              </label>
+              <textarea
+                value={criticalCharacteristics}
+                onChange={(e) => setCriticalCharacteristics(e.target.value)}
+                className="input-field"
+                rows={3}
+                placeholder="Ex: falta de segurança, poluição, falta de áreas verdes, problemas de acessibilidade..."
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                💡 Pense sobre aspectos que poderiam ser melhorados ou que afetam negativamente o lugar
+              </p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                O que você mudaria neste lugar? *
+              </label>
+              <textarea
+                value={whatWouldChange}
+                onChange={(e) => setWhatWouldChange(e.target.value)}
+                className="input-field"
+                rows={3}
+                placeholder="Se você pudesse mudar algo neste lugar, o que seria? Por quê?"
+                required
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                💡 Reflita sobre melhorias que tornariam este lugar ainda mais especial ou melhor para todos
+              </p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Como você percebe este espaço de maneira crítica? O que você observa sobre como as pessoas usam este lugar?
+              </label>
+              <textarea
+                value={spacePerception}
+                onChange={(e) => setSpacePerception(e.target.value)}
+                className="input-field"
+                rows={3}
+                placeholder="Ex: como as pessoas interagem com o espaço, quem frequenta este lugar, como o espaço é organizado..."
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                💡 Observe e reflita sobre a relação entre as pessoas e o espaço geográfico
+              </p>
+            </div>
           </div>
         </div>
 

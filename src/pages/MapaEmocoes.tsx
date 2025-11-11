@@ -130,7 +130,10 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Mapa das emoções
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-lg mb-2">
+          Vamos ver todos os seus lugares favoritos em um mapa? Descubra onde você se sente melhor e explore suas emoções!
+        </p>
+        <p className="text-gray-500 text-sm">
           Veja todos os seus lugares especiais em um mapa colorido por emoção!
         </p>
         <div className="mt-2 text-sm text-primary-600 bg-primary-50 px-4 py-2 rounded-lg inline-block">
@@ -336,6 +339,20 @@ const MapaEmocoes: React.FC<MapaEmocoesProps> = ({
                             </span>
                           ))}
                         </div>
+                      </div>
+                    )}
+                    
+                    {place.whatWouldChange && (
+                      <div className="mb-3 p-2 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                        <div className="text-xs font-semibold text-yellow-800 mb-1">💡 O que mudaria:</div>
+                        <p className="text-xs text-yellow-700">{place.whatWouldChange}</p>
+                      </div>
+                    )}
+                    
+                    {place.criticalCharacteristics && (
+                      <div className="mb-3 p-2 bg-orange-50 border-l-4 border-orange-400 rounded">
+                        <div className="text-xs font-semibold text-orange-800 mb-1">⚠️ Características críticas:</div>
+                        <p className="text-xs text-orange-700">{place.criticalCharacteristics}</p>
                       </div>
                     )}
                     

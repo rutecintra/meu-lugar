@@ -21,6 +21,21 @@ const CompareLugares: React.FC = () => {
       placeholder: 'Ex: é mais quente, tem mais água, é mais silencioso...'
     },
     {
+      id: 'problems',
+      question: 'Que problemas ou dificuldades você observa neste lugar? O que poderia ser melhorado?',
+      placeholder: 'Ex: falta de segurança, poluição, falta de áreas verdes, problemas de acesso...'
+    },
+    {
+      id: 'accessibility',
+      question: 'Como as pessoas usam este espaço? Todas as pessoas podem acessar e usar este lugar facilmente?',
+      placeholder: 'Ex: quem frequenta, como chegam, se há barreiras para pessoas com deficiência...'
+    },
+    {
+      id: 'changes',
+      question: 'Se você pudesse mudar algo neste lugar para torná-lo melhor, o que seria? Por quê?',
+      placeholder: 'Ex: adicionar mais árvores, melhorar a segurança, criar espaços para brincar...'
+    },
+    {
       id: 'learn',
       question: 'O que você gostaria de aprender sobre este lugar?',
       placeholder: 'Ex: como as pessoas vivem, que comidas comem, como é o clima...'
@@ -102,7 +117,10 @@ const CompareLugares: React.FC = () => {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           Compare lugares de Maceió
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-lg mb-2">
+          Já pensou em comparar seu lugar favorito com outros lugares incríveis? Venha explorar e descobrir as diferenças!
+        </p>
+        <p className="text-gray-500 text-sm">
           Conheça diferentes lugares de Maceió e Alagoas e compare com o seu lugar especial!
         </p>
       </div>
@@ -117,7 +135,8 @@ const CompareLugares: React.FC = () => {
           </div>
         <ol className="text-blue-800 space-y-2 list-decimal list-inside">
           <li>Escolha um lugar de Maceió ou Alagoas que te interessa</li>
-          <li>Responda as perguntas sobre semelhanças e diferenças</li>
+          <li>Responda as perguntas sobre semelhanças, diferenças e aspectos críticos</li>
+          <li>Pense sobre problemas, melhorias e como as pessoas usam o espaço</li>
           <li>Reflita sobre o que você pode aprender sobre sua cidade</li>
           <li>Compare com outros lugares da região depois!</li>
         </ol>
@@ -196,7 +215,7 @@ const CompareLugares: React.FC = () => {
               Comparando com: {selectedPlace.name}
             </h2>
             <p className="text-gray-600">
-              Agora responda as perguntas para refletir sobre as diferenças e semelhanças
+              Agora responda as perguntas para refletir sobre as diferenças, semelhanças e aspectos críticos deste lugar
             </p>
           </div>
 
