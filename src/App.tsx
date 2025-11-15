@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import MobileMenu from './components/MobileMenu';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import MeuLugarFavorito from './pages/MeuLugarFavorito';
 import MapaEmocoes from './pages/MapaEmocoes';
@@ -53,15 +54,15 @@ function App() {
   return (
     <TeacherModeProvider>
       <Router>
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 flex flex-col">
           <Navbar isOnline={isOnline} />
           
-          <div className="flex pt-16">
+          <div className="flex pt-16 flex-1">
             <Sidebar />
             <MobileMenu />
             
-            <main className="flex-1 lg:ml-64">
-              <div className="w-full px-2 sm:px-4 py-4 sm:py-6">
+            <main className="flex-1 lg:ml-64 flex flex-col">
+              <div className="w-full px-2 sm:px-4 py-4 sm:py-6 flex-1">
             <Routes>
               <Route path="/" element={<Home places={places} />} />
               <Route 
@@ -91,6 +92,8 @@ function App() {
               </div>
             </main>
           </div>
+
+          <Footer />
 
           {/* Indicador de status offline */}
           {!isOnline && (
